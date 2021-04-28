@@ -3,15 +3,17 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.30907.101
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TicTacToe.Web", "TicTacToe.Web\TicTacToe.Web.csproj", "{69BC74DC-4745-4D14-8976-1B2A18E6353D}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TicTacToe.Web", "TicTacToe.Web\TicTacToe.Web.csproj", "{69BC74DC-4745-4D14-8976-1B2A18E6353D}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TicTacToe.Models.Entity", "TicTacToe.Models.Entity\TicTacToe.Models.Entity.csproj", "{DC0B50B3-AC77-4918-83E0-1CDB1D662458}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TicTacToe.Models.Entity", "TicTacToe.Models.Entity\TicTacToe.Models.Entity.csproj", "{DC0B50B3-AC77-4918-83E0-1CDB1D662458}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TicTacToe.Services", "TicTacToe.Services\TicTacToe.Services.csproj", "{0B470C3C-3810-4700-83DB-944A64F2583E}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TicTacToe.Services", "TicTacToe.Services\TicTacToe.Services.csproj", "{0B470C3C-3810-4700-83DB-944A64F2583E}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TicTacToe.Models.Entity.Configuration", "TicTacToe.Models.Entity.Configuration\TicTacToe.Models.Entity.Configuration.csproj", "{60B216EA-CA11-476E-8FD5-3551DD84FF5E}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TicTacToe.Models.Entity.Configuration", "TicTacToe.Models.Entity.Configuration\TicTacToe.Models.Entity.Configuration.csproj", "{60B216EA-CA11-476E-8FD5-3551DD84FF5E}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TicTacToe.Data.EF", "TicTacToe.Data.EF\TicTacToe.Data.EF.csproj", "{50B87CF5-4F96-41E9-83D4-ED62E12C71F8}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TicTacToe.Data.EF", "TicTacToe.Data.EF\TicTacToe.Data.EF.csproj", "{50B87CF5-4F96-41E9-83D4-ED62E12C71F8}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TicTacToe.Resources", "TicTacToe.Resources\TicTacToe.Resources.csproj", "{40309AAF-14AE-4977-9BD1-E68D3D169977}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -39,6 +41,10 @@ Global
 		{50B87CF5-4F96-41E9-83D4-ED62E12C71F8}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{50B87CF5-4F96-41E9-83D4-ED62E12C71F8}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{50B87CF5-4F96-41E9-83D4-ED62E12C71F8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{40309AAF-14AE-4977-9BD1-E68D3D169977}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{40309AAF-14AE-4977-9BD1-E68D3D169977}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{40309AAF-14AE-4977-9BD1-E68D3D169977}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{40309AAF-14AE-4977-9BD1-E68D3D169977}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
