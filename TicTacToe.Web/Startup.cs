@@ -1,5 +1,9 @@
+using System.Globalization;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Localization;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Razor;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
@@ -8,6 +12,8 @@ namespace TicTacToe.Web
 {
     public class Startup
     {
+        private const string DefaultCultureName = "ru";
+        private const string SecondCultureName = "en";
         public Startup(IConfiguration configuration)
         {
             Configuration = configuration;
@@ -18,6 +24,25 @@ namespace TicTacToe.Web
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            var supportedCultures = new[]
+            {
+                new CultureInfo(SecondCultureName),
+                new CultureInfo(DefaultCultureName)
+            };
+
+            services.Configure<RequestLocalizationOptions>(
+                opts =>
+                {
+                    opts.DefaultRequestCulture = new RequestCulture(DefaultCultureName, DefaultCultureName);
+                    opts.SupportedCultures = supportedCultures;
+                    opts.SupportedUICultures = supportedCultures;
+
+                });
+            services.AddMvc(options => options.MaxModelValidationErrors = 500)
+                .AddViewLocalization(LanguageViewLocationExpanderFormat.Suffix)
+                .SetCompatibilityVersion(CompatibilityVersion.Latest)
+                ;
+            services.AddLocalization();
             services.AddControllersWithViews();
         }
 
@@ -36,7 +61,7 @@ namespace TicTacToe.Web
             }
             app.UseHttpsRedirection();
             app.UseStaticFiles();
-
+            app.UseRequestLocalization();
             app.UseRouting();
 
             app.UseAuthorization();

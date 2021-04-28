@@ -5,6 +5,14 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <EmbeddedResource Remove="GameString.ru.resx" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Page Include="GameString.ru.resx" />
+  </ItemGroup>
+
+  <ItemGroup>
     <Compile Update="GameStrings.en.Designer.cs">
       <DesignTime>True</DesignTime>
       <AutoGen>True</AutoGen>

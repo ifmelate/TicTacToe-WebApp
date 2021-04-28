@@ -1,4 +1,5 @@
-﻿<!DOCTYPE html>
+﻿@using TicTacToe.Resources
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="utf-8" />
@@ -19,10 +20,10 @@
                 <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
                     <ul class="navbar-nav flex-grow-1">
                         <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Game" asp-action="Index">Играть</a>
+                            <a class="nav-link text-dark" asp-area="" asp-controller="Game" asp-action="Index">@GameStrings.PlayButton</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Game" asp-action="Results">Результаты</a>
+                            <a class="nav-link text-dark" asp-area="" asp-controller="Game" asp-action="Results">@GameStrings.ResultsMenuButtonTitle</a>
                         </li>
                     </ul>
                 </div>
