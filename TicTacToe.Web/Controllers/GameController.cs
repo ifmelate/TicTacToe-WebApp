@@ -5,11 +5,11 @@ using TicTacToe.Web.Models;
 
 namespace TicTacToe.Web.Controllers
 {
-    public class HomeController : Controller
+    public class GameController : Controller
     {
-        private readonly ILogger<HomeController> _logger;
+        private readonly ILogger<GameController> _logger;
 
-        public HomeController(ILogger<HomeController> logger)
+        public GameController(ILogger<GameController> logger)
         {
             _logger = logger;
         }
@@ -19,6 +19,10 @@ namespace TicTacToe.Web.Controllers
             return View();
         }
 
+        public IActionResult Results()
+        {
+            return NoContent();
+        }
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()

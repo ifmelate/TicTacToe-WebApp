@@ -1,0 +1,17 @@
+﻿@{
+    ViewData["Title"] = "Home Page";
+}
+
+<div class="container w-50">
+    <div class="row h-75">
+        @for (int i = 0; i < 9; i++)
+        {
+            <div class="col-4 border"><div class="box"></div></div>
+        }
+    </div>
+    <div class="row">
+        <div class="col text-center h-25 m-5">
+            <button type="button" class="btn btn-dark">Начать игру</button>
+        </div>
+    </div>
+</div>
