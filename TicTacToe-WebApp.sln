@@ -13,7 +13,11 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TicTacToe.Models.Entity.Con
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TicTacToe.Data.EF", "TicTacToe.Data.EF\TicTacToe.Data.EF.csproj", "{50B87CF5-4F96-41E9-83D4-ED62E12C71F8}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TicTacToe.Resources", "TicTacToe.Resources\TicTacToe.Resources.csproj", "{40309AAF-14AE-4977-9BD1-E68D3D169977}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TicTacToe.Resources", "TicTacToe.Resources\TicTacToe.Resources.csproj", "{40309AAF-14AE-4977-9BD1-E68D3D169977}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TicTacToe.Repositories", "TicTacToe.Repositories\TicTacToe.Repositories.csproj", "{288E44F7-8CEC-412A-A4FC-72491AB0DB76}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TicTacToe.Repositories.Interfaces", "TicTacToe.Repositories.Interfaces\TicTacToe.Repositories.Interfaces.csproj", "{DA765C91-479A-45B0-89BA-27D8880AFC26}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -45,6 +49,14 @@ Global
 		{40309AAF-14AE-4977-9BD1-E68D3D169977}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{40309AAF-14AE-4977-9BD1-E68D3D169977}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{40309AAF-14AE-4977-9BD1-E68D3D169977}.Release|Any CPU.Build.0 = Release|Any CPU
+		{288E44F7-8CEC-412A-A4FC-72491AB0DB76}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{288E44F7-8CEC-412A-A4FC-72491AB0DB76}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{288E44F7-8CEC-412A-A4FC-72491AB0DB76}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{288E44F7-8CEC-412A-A4FC-72491AB0DB76}.Release|Any CPU.Build.0 = Release|Any CPU
+		{DA765C91-479A-45B0-89BA-27D8880AFC26}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DA765C91-479A-45B0-89BA-27D8880AFC26}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DA765C91-479A-45B0-89BA-27D8880AFC26}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DA765C91-479A-45B0-89BA-27D8880AFC26}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
