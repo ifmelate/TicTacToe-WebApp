@@ -123,6 +123,9 @@
   <data name="PlayMenuButtonTitle" xml:space="preserve">
     <value>Play</value>
   </data>
+  <data name="PlayPageTitle" xml:space="preserve">
+    <value>Play</value>
+  </data>
   <data name="ResultsMenuButtonTitle" xml:space="preserve">
     <value>Results</value>
   </data>

@@ -81,5 +81,12 @@ namespace TicTacToe.Resources {
                 return ResourceManager.GetString("ResultsMenuButtonTitle", resourceCulture);
             }
         }
+        public static string PlayPageTitle
+        {
+            get
+            {
+                return ResourceManager.GetString("PlayPageTitle", resourceCulture);
+            }
+        }
     }
 }
