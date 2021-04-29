@@ -80,3 +80,7 @@ body {
 .hidden {
     display: none !important;
 }
+
+.empty-cell, .cross-cell, .zero-cell {
+    display: block;
+}
