@@ -6,6 +6,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\TicTacToe.Data.EF\TicTacToe.Data.EF.csproj" />
+    <ProjectReference Include="..\TicTacToe.Repositories.Interfaces\TicTacToe.Repositories.Interfaces.csproj" />
   </ItemGroup>
 
 </Project>
