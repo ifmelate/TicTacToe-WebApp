@@ -18,5 +18,6 @@ namespace TicTacToe.Models.Entity
         public virtual ICollection<Game> WinnerGames { get; set; }
         public virtual ICollection<Game> LoserGames { get; set; }
         public virtual ICollection<Move> Moves { get; set; }
+        public virtual ICollection<Game> Games { get; set; }
     }
 }

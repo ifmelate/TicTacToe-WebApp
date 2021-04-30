@@ -9,6 +9,16 @@ namespace TicTacToe.Models.Entity
         public DateTime StartTime { get; set; }
         public DateTime? EndTime { get; set; }
 
+        /// <summary>
+        /// Active player
+        /// </summary>
+        public int PlayerId { get; set; }
+        public virtual Player Player { get; set; }
+
+        /// <summary>
+        /// Computer (PC)
+        /// </summary>
+        public int ComputerPlayerId { get; set; }
         public int? WinnerPlayerId { get; set; }
 
         public virtual Player WinnerPlayer { get; set; }
