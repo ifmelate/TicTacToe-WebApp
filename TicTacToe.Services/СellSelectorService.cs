@@ -13,11 +13,11 @@ namespace TicTacToe.Services
     /// <summary>
     /// implementing  selection of cells by computer between two strategies
     /// </summary>
-    public class GameGameCellSelectorService: IGameCellSelectorService
+    public class GameCellSelectorService: IGameCellSelectorService
     {
         private readonly IGameCellService _gameCellService;
 
-        public GameGameCellSelectorService(IGameCellService gameCellService)
+        public GameCellSelectorService(IGameCellService gameCellService)
         {
             _gameCellService = gameCellService;
         }

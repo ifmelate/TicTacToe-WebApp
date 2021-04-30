@@ -24,13 +24,15 @@ namespace TicTacToe.Services
         private readonly IGameRepository _gameRepository;
         private readonly IMoveRepository _moveRepository;
         private readonly IGameCellSelectorService _gameCellSelectorService;
+        private readonly IVictoryCheckService _victoryCheckService;
 
         public GameService(IGameRepository gameRepository, IMoveRepository moveRepository,
-            IGameCellSelectorService gameCellSelectorService)
+            IGameCellSelectorService gameCellSelectorService, IVictoryCheckService victoryCheckService)
         {
             _gameRepository = gameRepository;
             _moveRepository = moveRepository;
             _gameCellSelectorService = gameCellSelectorService;
+            _victoryCheckService = victoryCheckService;
         }
 
         public Game Create(int activePlayerId, int computerPlayerId, Level gameLevel)
@@ -52,11 +54,10 @@ namespace TicTacToe.Services
 
         public void Stop(Models.MVC.Game.Game game)
         {
-            var currentGame = _gameRepository.GetCurrentByPlayerId(game.Player.Id);
-            currentGame.EndDateTime = DateTime.Now;
-            _gameRepository.Update(currentGame);
-            _gameRepository.SaveChanges();
+            StopGame(game.Player.Id);
         }
+
+
 
         public void MakePlayerMove(int gameId, int cellId)
         {
@@ -71,18 +72,20 @@ namespace TicTacToe.Services
                 MoveNumber = _moveRepository.ExistsCount(gameId, currentGame.Player.Id) + 1
             });
             _moveRepository.SaveChanges();
+            CheckWin(currentGame);
 
             #endregion
         }
 
+
         public void MakeComputerMove(int gameId)
         {
             var currentGame = _gameRepository.GetWithPlayer(gameId);
-            ISelectorStrategy strategy = currentGame.LevelId == (int) LevelEnum.Easy ?
-                (ISelectorStrategy) new EasySelectorStrategy()
-                : (ISelectorStrategy) new HardSelectorStrategy();
-            
-            var cell = _gameCellSelectorService.Execute(currentGame.Id, (GameSideEnum)currentGame.ComputerPlayer.GameSideId , strategy);
+            ISelectorStrategy strategy = currentGame.LevelId == (int)LevelEnum.Easy ?
+                new EasySelectorStrategy()
+                : (ISelectorStrategy)new HardSelectorStrategy();
+
+            var cell = _gameCellSelectorService.Execute(currentGame.Id, (GameSideEnum)currentGame.ComputerPlayer.GameSideId, strategy);
 
             #region Computer move
 
@@ -96,6 +99,34 @@ namespace TicTacToe.Services
             _moveRepository.SaveChanges();
             #endregion
 
+        }
+        private void StopGame(int playerId)
+        {
+            var currentGame = _gameRepository.GetCurrentByPlayerId(playerId);
+            currentGame.EndDateTime = DateTime.Now;
+            _gameRepository.Update(currentGame);
+            _gameRepository.SaveChanges();
+        }
+        private void EndGame(Game game, GameSideEnum winnerGameSideEnum)
+        {
+            var currentGame = _gameRepository.GetCurrentByPlayerId(game.PlayerId);
+            currentGame.EndDateTime = DateTime.Now;
+            currentGame.WinnerPlayerId = game.Player.GameSideId == (int)winnerGameSideEnum ?
+                game.PlayerId :
+                game.ComputerPlayerId;
+            currentGame.LoserPlayerId = game.Player.GameSideId != (int)winnerGameSideEnum ?
+                game.PlayerId :
+                game.ComputerPlayerId;
+            _gameRepository.Update(currentGame);
+            _gameRepository.SaveChanges();
+        }
+        private void CheckWin(Game currentGame)
+        {
+            var winner = _victoryCheckService.GetWinner(currentGame);
+            if (winner != null)
+            {
+                EndGame(currentGame, (GameSideEnum) winner);
+            }
         }
     }
 }
