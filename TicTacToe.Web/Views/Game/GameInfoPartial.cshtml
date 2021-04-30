@@ -1,15 +1,19 @@
 ﻿@using TicTacToe.Resources
 @model TicTacToe.Models.MVC.Game.Game
-
-    <div class="col text-center h-25">
-        <div class="form-group">
-            <div class="col text-center">
-                <label>Начало игры: @(Model.StartDateTime.Value.ToShortDateString()) @Model.StartDateTime.Value.ToShortTimeString()</label>
+    <form  class="row" asp-action="StopGame" asp-controller="Game" method="POST">
+        <div class="col text-center h-25">
+            <div class="form-group">
+                <div class="col text-center">
+                    <label>Начало игры: @Model.StartDateTime?.ToShortDateString() @Model.StartDateTime.Value.ToShortTimeString()</label>
+                    <input type="hidden" asp-for="StartDateTime"/>
+                </div>
             </div>
-        </div>
-        <div class="form-group">
-            <div class="col text-center">
-                <label>Играют: @(Model.Player.Name) vs PC</label>
+            <div class="form-group">
+                <div class="col text-center">
+                    <input type="hidden" asp-for="Player.Id" />
+                    <label>Играют: @(Model.Player.Name) vs PC</label>
+                </div>
             </div>
+            <button id="stopGameButton" type="submit" class="btn btn-danger m-3">@GameStrings.StopGameButton</button>
         </div>
-    </div>
+</form>

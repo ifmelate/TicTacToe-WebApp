@@ -9,6 +9,7 @@ namespace TicTacToe.Services
     {
         void Create(int activePlayerId, int computerPlayerId);
         Game GetCurrentGame(int playerId);
+        void Stop(Models.MVC.Game.Game game);
     }
 
     public class GameService : IGameService
@@ -32,7 +33,15 @@ namespace TicTacToe.Services
 
         public Game GetCurrentGame(int playerId)
         {
-            return _gameRepository.GetByPlayerId(playerId);
+            return _gameRepository.GetCurrentByPlayerId(playerId);
+        }
+
+        public void Stop(Models.MVC.Game.Game game)
+        {
+           var currentGame = _gameRepository.GetCurrentByPlayerId(game.Player.Id);
+           currentGame.EndDateTime = DateTime.Now;
+           _gameRepository.Update(currentGame);
+           _gameRepository.SaveChanges();
         }
     }
 }

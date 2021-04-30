@@ -15,9 +15,9 @@ namespace TicTacToe.Repositories
             _dbSet = dbContext.Set<Game>();
         }
 
-        public Game GetByPlayerId(int playerId)
+        public Game GetCurrentByPlayerId(int playerId)
         {
-            return _dbSet.FirstOrDefault(d => d.PlayerId == playerId);
+            return _dbSet.OrderBy(s=>s.StartDateTime).LastOrDefault(d => d.PlayerId == playerId && d.EndDateTime == null);
         }
     }
 }

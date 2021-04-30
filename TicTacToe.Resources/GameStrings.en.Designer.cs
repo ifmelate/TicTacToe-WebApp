@@ -119,5 +119,12 @@ namespace TicTacToe.Resources {
                 return ResourceManager.GetString("InputUserName", resourceCulture);
             }
         }
+        public static string StopGameButton
+        {
+            get
+            {
+                return ResourceManager.GetString("StopGameButton", resourceCulture);
+            }
+        }
     }
 }

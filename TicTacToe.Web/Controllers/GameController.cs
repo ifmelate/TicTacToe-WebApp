@@ -80,6 +80,7 @@ namespace TicTacToe.Web.Controllers
         }
 
         [HttpPost]
+        [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult StartGame(Player player)
         {
             #region Create or Update Player
@@ -99,7 +100,16 @@ namespace TicTacToe.Web.Controllers
 
             _gameService.Create(existPlayer.Id, computerPlayer.Id);
             #endregion
-            return NoContent();
+
+            return RedirectToAction("Index");
+        }
+
+        [HttpPost]
+        [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
+        public IActionResult StopGame(Game game)
+        {
+            _gameService.Stop(game);
+            return RedirectToAction("Index");
         }
     }
 }

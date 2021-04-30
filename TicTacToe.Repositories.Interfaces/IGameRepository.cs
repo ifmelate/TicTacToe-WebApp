@@ -4,6 +4,6 @@ namespace TicTacToe.Repositories.Interfaces
 {
     public interface IGameRepository : IGenericRepository<Game>
     {
-        Game GetByPlayerId(int playerId);
+        Game GetCurrentByPlayerId(int playerId);
     }
 }

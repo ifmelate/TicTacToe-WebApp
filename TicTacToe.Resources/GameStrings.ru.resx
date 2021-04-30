@@ -138,6 +138,9 @@
   <data name="SelectGameSide" xml:space="preserve">
     <value>Выберите сторону</value>
   </data>
+  <data name="StopGameButton" xml:space="preserve">
+    <value>Завершить</value>
+  </data>
   <data name="Zeros" xml:space="preserve">
     <value>Нолики</value>
   </data>
