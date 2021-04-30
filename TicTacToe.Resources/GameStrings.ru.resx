@@ -120,6 +120,12 @@
   <data name="Crosses" xml:space="preserve">
     <value>Крестики</value>
   </data>
+  <data name="EasyLevel" xml:space="preserve">
+    <value>Легко</value>
+  </data>
+  <data name="HardLevel" xml:space="preserve">
+    <value>Сложно</value>
+  </data>
   <data name="InputUserName" xml:space="preserve">
     <value>Введите своё имя</value>
   </data>
@@ -134,6 +140,9 @@
   </data>
   <data name="ResultsMenuButtonTitle" xml:space="preserve">
     <value>Результаты</value>
+  </data>
+  <data name="SelectGameLevel" xml:space="preserve">
+    <value>Выберите уровень игры</value>
   </data>
   <data name="SelectGameSide" xml:space="preserve">
     <value>Выберите сторону</value>

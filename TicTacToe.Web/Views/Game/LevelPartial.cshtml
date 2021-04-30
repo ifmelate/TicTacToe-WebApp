@@ -1,0 +1,13 @@
+﻿@using TicTacToe.Resources
+@model TicTacToe.Models.MVC.Game.Game
+<div class="form-group">
+    <div class="col text-center">
+        <label>@GameStrings.SelectGameLevel:</label>
+        <div class="btn-group m-1" role="group">
+            <div class="form-check m-1">
+                @Html.EditorFor(m => m.Level.LevelEnum, "EnumRadioButtonList")
+            </div>
+
+        </div>
+    </div>
+</div>

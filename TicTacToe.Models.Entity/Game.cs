@@ -26,5 +26,7 @@ namespace TicTacToe.Models.Entity
 
         public virtual Player LoserPlayer { get; set; }
         public virtual ICollection<Move> Moves { get; set; }
+        public int LevelId { get; set; }
+        public virtual Level Level { get; set; }
     }
 }

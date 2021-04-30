@@ -9,5 +9,6 @@ namespace TicTacToe.Models.MVC.Game
         public virtual Player Player { get; set; }
         public DateTime? StartDateTime { get; set; }
         public IList<GameCell> GameCells { get; set; }
+        public Level Level { get; set; }
     }
 }

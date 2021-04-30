@@ -24,6 +24,8 @@ namespace TicTacToe.Models.Entity.Configuration
 
             builder.HasOne(d => d.LoserPlayer).WithMany(d => d.LoserGames).HasForeignKey(d => d.LoserPlayerId);
 
+            builder.HasOne(s => s.Level).WithMany(s => s.Games).HasForeignKey(v => v.LevelId);
+
         }
     }
 }

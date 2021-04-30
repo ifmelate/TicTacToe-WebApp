@@ -17,6 +17,7 @@ namespace TicTacToe.Data.EF
             modelBuilder.ApplyConfiguration(new GameConfiguration());
             modelBuilder.ApplyConfiguration(new GameSideConfiguration());
             modelBuilder.ApplyConfiguration(new PlayerConfiguration());
+            modelBuilder.ApplyConfiguration(new LevelConfiguration());
 
         }
 

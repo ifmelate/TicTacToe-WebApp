@@ -120,6 +120,12 @@
   <data name="Crosses" xml:space="preserve">
     <value>Crosses</value>
   </data>
+  <data name="EasyLevel" xml:space="preserve">
+    <value>Easy</value>
+  </data>
+  <data name="HardLevel" xml:space="preserve">
+    <value>Hard</value>
+  </data>
   <data name="InputUserName" xml:space="preserve">
     <value>Input your name</value>
   </data>
@@ -134,6 +140,9 @@
   </data>
   <data name="ResultsMenuButtonTitle" xml:space="preserve">
     <value>Results</value>
+  </data>
+  <data name="SelectGameLevel" xml:space="preserve">
+    <value>Select game level</value>
   </data>
   <data name="SelectGameSide" xml:space="preserve">
     <value>Select game side</value>
