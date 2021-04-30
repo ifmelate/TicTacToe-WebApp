@@ -6,5 +6,6 @@ namespace TicTacToe.Repositories.Interfaces
     {
         Player FindByUser(string ip);
         Player GetComputerPlayer(int gameSideId);
+        Player GetWithGameSide(int playerId);
     }
 }

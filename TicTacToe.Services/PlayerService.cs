@@ -5,8 +5,9 @@ namespace TicTacToe.Services
 {
     public interface IPlayerService
     {
-        Models.MVC.Game.Player Find(string userIp);
-        void Create(TicTacToe.Models.MVC.Game.Player player, int currentUserId);
+        Models.MVC.Game.Player FindByUserIp(string userIp);
+        Models.MVC.Game.Player FindById(int playerId);
+        Player Create(TicTacToe.Models.MVC.Game.Player player, int currentUserId);
         void Update(Player player);
         Player GetComputerPlayer(GameSideEnum gameSide);
     }
@@ -18,15 +19,29 @@ namespace TicTacToe.Services
         {
             _playerRepository = playerRepository;
         }
-        public Models.MVC.Game.Player Find(string userIp)
+        public Models.MVC.Game.Player FindByUserIp(string userIp)
         {
             var player = _playerRepository.FindByUser(userIp);
             if (player == null)
                 return null;
             return ConvertToMVCPlayer(player);
         }
+        public Models.MVC.Game.Player FindByUserId(int userId)
+        {
+            var player = _playerRepository.GetById(userId);
+            if (player == null)
+                return null;
+            return ConvertToMVCPlayer(player);
+        }
+        public Models.MVC.Game.Player FindById(int playerId)
+        {
+            var player = _playerRepository.GetWithGameSide(playerId);
+            if (player == null)
+                return null;
+            return ConvertToMVCPlayer(player);
+        }
 
-        private  Player ConvertToMVCPlayer(Models.Entity.Player player)
+        private Player ConvertToMVCPlayer(Models.Entity.Player player)
         {
             return new TicTacToe.Models.MVC.Game.Player
             {
@@ -36,7 +51,7 @@ namespace TicTacToe.Services
             };
         }
 
-        public void Create(TicTacToe.Models.MVC.Game.Player player, int userId)
+        public TicTacToe.Models.MVC.Game.Player Create(TicTacToe.Models.MVC.Game.Player player, int userId)
         {
             _playerRepository.Add(new Models.Entity.Player
             {
@@ -45,6 +60,7 @@ namespace TicTacToe.Services
                 Name = player.Name
             });
             _playerRepository.SaveChanges();
+            return FindById(player.Id);
         }
 
         public void Update(Player newPlayer)

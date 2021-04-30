@@ -1,17 +1,19 @@
 ﻿using System;
+using System.Collections.Generic;
 using TicTacToe.Models.Entity;
 using TicTacToe.Models.MVC.Game;
 using TicTacToe.Repositories.Interfaces;
 using TicTacToe.Services.Strategy;
 using Game = TicTacToe.Models.Entity.Game;
 using Level = TicTacToe.Models.MVC.Game.Level;
+using Player = TicTacToe.Models.Entity.Player;
 
 namespace TicTacToe.Services
 {
     public interface IGameService
     {
-        Game Create(int activePlayerId, int computerPlayerId, Level level);
-        Game GetCurrentGame(int playerId);
+        Models.MVC.Game.Game Create(int userId, Models.MVC.Game.Player player, Level gameLevel);
+        TicTacToe.Models.MVC.Game.Game GetCurrentGame(string userIp);
         void Stop(Models.MVC.Game.Game game);
 
         void MakePlayerMove(int gameId, int cellId);
@@ -25,31 +27,70 @@ namespace TicTacToe.Services
         private readonly IMoveRepository _moveRepository;
         private readonly IGameCellSelectorService _gameCellSelectorService;
         private readonly IVictoryCheckService _victoryCheckService;
+        private readonly IPlayerService _playerService;
+        private readonly IGameCellService _gameCellService;
 
         public GameService(IGameRepository gameRepository, IMoveRepository moveRepository,
-            IGameCellSelectorService gameCellSelectorService, IVictoryCheckService victoryCheckService)
+            IGameCellSelectorService gameCellSelectorService, IVictoryCheckService victoryCheckService,
+            IPlayerService playerService, IGameCellService gameCellService)
         {
             _gameRepository = gameRepository;
             _moveRepository = moveRepository;
             _gameCellSelectorService = gameCellSelectorService;
             _victoryCheckService = victoryCheckService;
+            _playerService = playerService;
+            _gameCellService = gameCellService;
         }
 
-        public Game Create(int activePlayerId, int computerPlayerId, Level gameLevel)
+        public Models.MVC.Game.Game Create(int userId, Models.MVC.Game.Player player, Level gameLevel)
         {
+            #region Create or Update Player
+            var existPlayer = _playerService.FindById(player.Id);
+            if (existPlayer == null)
+            {
+                existPlayer = _playerService.Create(player, userId);
+    
+            }
+            else
+                _playerService.Update(player);
+            #endregion
+
+            
+            var computerPlayer = _playerService.GetComputerPlayer(player.GameSide == GameSideEnum.Crosses ? GameSideEnum.Zeros : GameSideEnum.Crosses);
+
+
             _gameRepository.Add(new Game
             {
-                PlayerId = activePlayerId,
-                ComputerPlayerId = computerPlayerId,
+                PlayerId = existPlayer.Id,
+                ComputerPlayerId = computerPlayer.Id,
                 LevelId = (int)gameLevel.LevelEnum
             });
-            _gameRepository.SaveChanges();
-            return GetCurrentGame(activePlayerId);
+            _gameRepository.SaveChanges(); 
+
+            var currentGame = CurrentGame(existPlayer);
+            if (player.GameSide == GameSideEnum.Zeros)
+                MakeComputerMove(currentGame.Id);
+            return currentGame;
         }
 
-        public Game GetCurrentGame(int playerId)
+        public TicTacToe.Models.MVC.Game.Game GetCurrentGame(string userIp)
         {
-            return _gameRepository.GetCurrentByPlayerId(playerId);
+            var player = _playerService.FindByUserIp(userIp) ?? new TicTacToe.Models.MVC.Game.Player();
+            return CurrentGame(player);
+        }
+
+        private Models.MVC.Game.Game CurrentGame(TicTacToe.Models.MVC.Game.Player player)
+        {
+            var currentGame = _gameRepository.GetCurrentByPlayerId(player.Id);
+            var game = new TicTacToe.Models.MVC.Game.Game()
+            {
+                Id = currentGame?.Id ?? 0,
+                Player = player,
+                StartDateTime = player.Id > 0 ? currentGame?.StartDateTime : null,
+                GameCells = currentGame?.Id > 0 ? _gameCellService.GetAll(currentGame.Id) : new List<GameCell>(),
+                Level = new Level() {LevelEnum = LevelEnum.Easy}
+            };
+            return game;
         }
 
         public void Stop(Models.MVC.Game.Game game)
@@ -119,6 +160,7 @@ namespace TicTacToe.Services
                 game.ComputerPlayerId;
             _gameRepository.Update(currentGame);
             _gameRepository.SaveChanges();
+
         }
         private void CheckWin(Game currentGame)
         {
