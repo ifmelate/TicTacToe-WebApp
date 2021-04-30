@@ -139,7 +139,7 @@ namespace TicTacToe.Services
             });
             _moveRepository.SaveChanges();
             #endregion
-
+            CheckWin(currentGame);
         }
         private void StopGame(int playerId)
         {

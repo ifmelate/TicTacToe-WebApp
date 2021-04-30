@@ -11,7 +11,7 @@
             var gameId = $(this).find("#cell_GameId").val();
             $.ajax({
                 type: 'POST',
-                url: Game.Options.ReloadGameCellsUrl,
+                url: Game.Options.MakePlayerMoveUrl,
                 data: {
                     gameId: gameId,
                     cellId: cellId
@@ -24,6 +24,25 @@
 
                 }
             });
+
+            setTimeout(
+                function () {
+                    $.ajax({
+                        type: 'POST',
+                        url: Game.Options.MakeComputerMoveUrl,
+                        data: {
+                            gameId: gameId
+                        },
+                        traditional: true,
+                        success: function (data) {
+                            $("#gameForm").html(data);
+                        },
+                        complete: function () {
+
+                        }
+                    });
+                }, 500);
+           
         });
 
         this.Initialized = true;

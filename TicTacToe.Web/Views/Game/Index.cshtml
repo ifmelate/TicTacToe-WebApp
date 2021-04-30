@@ -32,7 +32,8 @@
     <script type="text/javascript">
         $(function () {
             TicTacToe.Views.Game.Init({
-                ReloadGameCellsUrl: '@Url.Action("AjaxMakePlayerMove")'
+                MakePlayerMoveUrl: '@Url.Action("AjaxMakePlayerMove")',
+                MakeComputerMoveUrl: '@Url.Action("AjaxMakeComputerMove")'
             });
         });
     </script>

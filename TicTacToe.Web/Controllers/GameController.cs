@@ -100,10 +100,15 @@ namespace TicTacToe.Web.Controllers
         public IActionResult AjaxMakePlayerMove(int gameId, int cellId)
         {
             _gameService.MakePlayerMove(gameId, cellId);
+            return PartialView("GameGridPartial", CreateGameCellsList(gameId));
+        }
+        [HttpPost]
+        [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
+        public IActionResult AjaxMakeComputerMove(int gameId)
+        {
             _gameService.MakeComputerMove(gameId);
             return PartialView("GameGridPartial", CreateGameCellsList(gameId));
         }
-
         private IList<GameCell> CreateGameCellsList(int gameId)
         {
             return _gameCellService.GetAll(gameId);
