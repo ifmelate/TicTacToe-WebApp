@@ -2,8 +2,8 @@
 
 namespace TicTacToe.Services.Strategy
 {
-    internal interface ISelectorStrategy
+    public interface ISelectorStrategy
     {
-        GameCell GetCell(GameCell[] cells);
+        GameCell GetCell(GameCell[] cells, GameSideEnum computerGameSide);
     }
 }

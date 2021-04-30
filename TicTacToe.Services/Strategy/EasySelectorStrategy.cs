@@ -9,7 +9,7 @@ namespace TicTacToe.Services.Strategy
     /// </summary>
     internal class EasySelectorStrategy : ISelectorStrategy
     {
-        public GameCell GetCell(GameCell[] cells)
+        public GameCell GetCell(GameCell[] cells, GameSideEnum computerGameSide)
         {
             var emptyCells = cells.Where(d => d.GameSide == null).ToArray();
 

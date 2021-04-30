@@ -27,7 +27,10 @@ namespace TicTacToe.Repositories
 
         public Game GetWithPlayer(int gameId)
         {
-            return _dbSet.Include(d => d.Player).FirstOrDefault(d => d.Id == gameId);
+            return _dbSet
+                .Include(d => d.Player)
+                .Include(d=>d.ComputerPlayer)
+                .FirstOrDefault(d => d.Id == gameId);
         }
     }
 }

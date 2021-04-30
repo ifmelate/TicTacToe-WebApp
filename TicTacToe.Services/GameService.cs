@@ -81,7 +81,8 @@ namespace TicTacToe.Services
             ISelectorStrategy strategy = currentGame.LevelId == (int) LevelEnum.Easy ?
                 (ISelectorStrategy) new EasySelectorStrategy()
                 : (ISelectorStrategy) new HardSelectorStrategy();
-            var cell = _gameCellSelectorService.Execute(currentGame.Id, currentGame.ComputerPlayerId, strategy);
+            
+            var cell = _gameCellSelectorService.Execute(currentGame.Id, (GameSideEnum)currentGame.ComputerPlayer.GameSideId , strategy);
 
             #region Computer move
 
