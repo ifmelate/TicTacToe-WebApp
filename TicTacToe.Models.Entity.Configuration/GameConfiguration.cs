@@ -18,8 +18,11 @@ namespace TicTacToe.Models.Entity.Configuration
             builder.HasOne(d => d.Player)
                 .WithMany(d => d.Games)
                 .HasForeignKey(d => d.PlayerId)
-                .OnDelete(DeleteBehavior.Restrict); 
-            builder.Property(s => s.ComputerPlayerId).IsRequired();
+                .OnDelete(DeleteBehavior.Restrict);
+            builder.HasOne(d => d.ComputerPlayer)
+                .WithMany(d => d.ComputerGames)
+                .HasForeignKey(d => d.ComputerPlayerId)
+                .OnDelete(DeleteBehavior.Restrict);
             builder.HasOne(d => d.WinnerPlayer).WithMany(d => d.WinnerGames).HasForeignKey(d => d.WinnerPlayerId);
 
             builder.HasOne(d => d.LoserPlayer).WithMany(d => d.LoserGames).HasForeignKey(d => d.LoserPlayerId);

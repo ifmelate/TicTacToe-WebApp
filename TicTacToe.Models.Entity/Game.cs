@@ -19,6 +19,7 @@ namespace TicTacToe.Models.Entity
         /// Computer (PC)
         /// </summary>
         public int ComputerPlayerId { get; set; }
+        public virtual Player ComputerPlayer { get; set; }
         public int? WinnerPlayerId { get; set; }
 
         public virtual Player WinnerPlayer { get; set; }
