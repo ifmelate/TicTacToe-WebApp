@@ -1,4 +1,5 @@
-﻿using System.Linq;
+﻿using System.Collections.Generic;
+using System.Linq;
 using Microsoft.EntityFrameworkCore;
 using TicTacToe.Data.EF;
 using TicTacToe.Models.Entity;
@@ -15,9 +16,10 @@ namespace TicTacToe.Repositories
             _dbSet = dbContext.Set<Move>();
         }
 
-        public int ExistCount(int gameId, int playerId)
+        public int ExistsCount(int gameId, int playerId)
         {
             return _dbSet.Count(d => d.GameId == gameId && d.PlayerId == playerId);
         }
+
     }
 }
