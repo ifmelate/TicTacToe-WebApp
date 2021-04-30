@@ -39,7 +39,7 @@ namespace TicTacToe.Data.EF.Migrations
                 {
                     UserId = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    Ip = table.Column<string>(type: "nvarchar(45)", maxLength: 45, nullable: true),
+                    Ip = table.Column<string>(type: "nvarchar(45)", maxLength: 45, nullable: false),
                     EntryDate = table.Column<DateTime>(type: "datetime2", nullable: false)
                 },
                 constraints: table =>

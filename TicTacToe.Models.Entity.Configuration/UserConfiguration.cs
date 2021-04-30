@@ -12,9 +12,10 @@ namespace TicTacToe.Models.Entity.Configuration
                 .ValueGeneratedOnAdd();
             builder.Property(p => p.Id).HasColumnName("UserId");
 
-            builder.Property(d => d.Ip).HasMaxLength(45);
+            builder.Property(d => d.Ip).IsRequired().HasMaxLength(45);
 
             builder.Property(t => t.EntryDate)
+                .HasDefaultValueSql("getdate()")
                 .ValueGeneratedOnAddOrUpdate();
 
         }
