@@ -1,11 +1,10 @@
-﻿using System.Collections.Generic;
-using System.Linq;
+﻿using System.Linq;
 using Microsoft.EntityFrameworkCore;
 using TicTacToe.Data.EF;
 using TicTacToe.Models.Entity;
 using TicTacToe.Repositories.Interfaces;
 
-namespace TicTacToe.Repositories.GenericRepository
+namespace TicTacToe.Repositories
 {
     public class PlayerRepository : GenericRepository<Player>, IPlayerRepository
     {

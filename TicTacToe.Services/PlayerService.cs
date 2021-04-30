@@ -6,7 +6,7 @@ namespace TicTacToe.Services
     public interface IPlayerService
     {
         Models.MVC.Game.Player Find(string userIp);
-        void Create(Player player);
+        void Create(Player player, int currentUserId);
     }
     public class PlayerService: IPlayerService
     {
@@ -23,17 +23,16 @@ namespace TicTacToe.Services
                 return null;
             return new TicTacToe.Models.MVC.Game.Player
             {
-                User = player.User,
                 GameSide = (GameSideEnum) player.GameSide.Id,
                 Name = player.Name
             };
         }
 
-        public void Create(Player player)
+        public void Create(Player player, int userId)
         {
             _playerRepository.Add(new Models.Entity.Player
             {
-                UserId = player.User?.Id,
+                UserId = userId,
                 GameSideId = (int) player.GameSide,
                 Name = player.Name
             });

@@ -10,8 +10,6 @@ namespace TicTacToe.Models.MVC.Game
         }
         public string Name { get; set; }
 
-        public  User User { get; set; }
-
         public  GameSideEnum GameSide  { get; set; }
 
     }

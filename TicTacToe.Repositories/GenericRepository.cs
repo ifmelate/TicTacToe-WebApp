@@ -6,7 +6,6 @@ using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Query;
 using TicTacToe.Data.EF;
-using TicTacToe.Repositories.GenericRepository;
 using TicTacToe.Repositories.Interfaces;
 
 namespace TicTacToe.Repositories
