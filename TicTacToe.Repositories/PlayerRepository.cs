@@ -18,7 +18,8 @@ namespace TicTacToe.Repositories
 
         public Player FindByUser(string ip)
         {
-            return _dbSet.FirstOrDefault(d => d.User.Ip == ip);
+            return _dbSet.Include(d=>d.GameSide)
+                .FirstOrDefault(d => d.User.Ip == ip);
         }
     }
 }

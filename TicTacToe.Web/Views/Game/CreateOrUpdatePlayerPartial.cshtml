@@ -1,9 +1,10 @@
 ﻿@using TicTacToe.Resources
 @model TicTacToe.Models.MVC.Game.Player
-<form id="userInfoForm" class="row" asp-action="CreatePlayer" asp-controller="Game" method="POST">
+<form id="userInfoForm" class="row" asp-action="CreateOrUpdatePlayer" asp-controller="Game" method="POST">
     <div class="col text-center h-25">
         <div class="form-group">
             <div class="col text-center">
+                <input type="hidden" asp-for="Id"/>
                 <label>@GameStrings.InputUserName:</label>
                 <div class="input-group mb-3">
                     <input type="text" class="form-control" asp-for="Name" aria-describedby="basic-addon3">

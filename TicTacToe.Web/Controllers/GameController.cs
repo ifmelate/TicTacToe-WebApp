@@ -75,9 +75,13 @@ namespace TicTacToe.Web.Controllers
         }
 
         [HttpPost]
-        public IActionResult CreatePlayer(Player player)
+        public IActionResult CreateOrUpdatePlayer(Player player)
         {
-            _playerService.Create(player, CurrentUser.Id);
+            var existPlayer = _playerService.Find(CurrentUser.Ip);
+            if (existPlayer == null)
+                _playerService.Create(player, CurrentUser.Id);
+            else
+                _playerService.Update(player);
             return NoContent();
         }
     }
