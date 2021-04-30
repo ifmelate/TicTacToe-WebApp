@@ -6,7 +6,7 @@
         Game = this;
         this.Options = options;
 
-        $('#gameForm .col-4').click(function () {
+        $('#gameForm').on('click', '.col-4', function (e) {
             var cellId = $(this).find("#cell_CellId").val();
             var gameId = $(this).find("#cell_GameId").val();
             $.ajax({
@@ -18,7 +18,7 @@
                 },
                 traditional: true,
                 success: function (data) {
-
+                    $("#gameForm").html(data);
                 },
                 complete: function () {
 

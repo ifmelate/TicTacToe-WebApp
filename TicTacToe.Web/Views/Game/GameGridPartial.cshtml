@@ -2,7 +2,7 @@
 @using TicTacToe.Resources
 @model IList<TicTacToe.Models.MVC.Game.GameCell>
 <div id="gameForm" class="row h-75">
-    @foreach (var cell in @Model)
+    @foreach (var cell in Model)
     {
         <div class="col-4 border border-dark">
             <input type="hidden" asp-for="@cell.CellId"/>

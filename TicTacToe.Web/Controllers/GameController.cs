@@ -48,6 +48,7 @@ namespace TicTacToe.Web.Controllers
             _gameService = gameService;
         }
 
+        [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Index()
         {
             var player = _playerService.Find(CurrentUser.Ip) ?? new Player();
