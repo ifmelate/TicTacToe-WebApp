@@ -7,8 +7,23 @@
         this.Options = options;
 
         $('#gameForm .col-4').click(function () {
-            $(this).find('.empty-cell').addClass('hidden');
-            $(this).find('.cross-cell').removeClass('hidden');
+            var cellId = $(this).find("#cell_CellId").val();
+            var gameId = $(this).find("#cell_GameId").val();
+            $.ajax({
+                type: 'POST',
+                url: Game.Options.ReloadGameCellsUrl,
+                data: {
+                    gameId: gameId,
+                    cellId: cellId
+                },
+                traditional: true,
+                success: function (data) {
+
+                },
+                complete: function () {
+
+                }
+            });
         });
 
         this.Initialized = true;

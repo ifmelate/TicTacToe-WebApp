@@ -1,0 +1,29 @@
+﻿@using TicTacToe.Models.MVC.Game
+@using TicTacToe.Resources
+@model IList<TicTacToe.Models.MVC.Game.GameCell>
+<div id="gameForm" class="row h-75">
+    @foreach (var cell in @Model)
+    {
+        <div class="col-4 border border-dark">
+            <input type="hidden" asp-for="@cell.CellId"/>
+            <input type="hidden" asp-for="@cell.GameId"/>
+            @if (cell.GameSide == null)
+            {
+                <a class="empty-cell" href="javascript:void(0)">
+                    <img src="images/empty_cell.svg"/>
+                </a>}
+            else
+            {
+                if (cell.GameSide ==  GameSideEnum.Crosses)
+                {
+                    <img class="cross-cell" src="images/cross.svg"/>
+                }
+                else
+                {
+                    <img class="zero-cell" src="images/zero.svg"/>
+                }
+            }
+
+        </div>
+    }
+</div>

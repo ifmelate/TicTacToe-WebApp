@@ -6,5 +6,4 @@ namespace TicTacToe.Repositories.Interfaces
     {
         User FindUser(string ip);
     }
-
 }

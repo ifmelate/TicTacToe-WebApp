@@ -4,7 +4,7 @@
     ViewData["Title"] = GameStrings.PlayPageTitle;
 }
 
-<div class="container w-75">
+<div class="container w-50">
     <div class="row mh-100">
         <div class="col">
             @if(Model.StartDateTime == null) 
@@ -15,18 +15,7 @@
             {
                 <partial name="GameInfoPartial" model="@Model"/>
                 <div class="col">
-                    <div id="gameForm" class="row h-75">
-                        @for (int i = 0; i < 9; i++)
-                        {
-                            <div class="col-4 border border-dark">
-                                <a href="javascript:void(0)">
-                                    <img class="empty-cell" src="images/empty_cell.svg" />
-                                    <img class="cross-cell hidden" src="images/cross.svg" />
-                                    <img class="zero-cell hidden" src="images/zero.svg" />
-                                </a>
-                            </div>
-                        }
-                    </div>
+                   <partial name="GameGridPartial" model="@Model.GameCells"/>
                 </div>
             }
         </div>
@@ -39,7 +28,7 @@
     <script type="text/javascript">
         $(function () {
             TicTacToe.Views.Game.Init({
-
+                ReloadGameCellsUrl:'@Url.Action("AjaxGameCells")'
             });
         });
     </script>

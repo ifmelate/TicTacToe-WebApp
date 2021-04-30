@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using System.Diagnostics;
@@ -17,9 +18,9 @@ namespace TicTacToe.Web.Controllers
     {
         private readonly ILogger<GameController> _logger;
         private readonly IPlayerService _playerService;
-        private readonly IUserService _userService;
+        private readonly UserService _userService;
         private readonly IHttpContextAccessor _httpContextAccessor;
-        private IGameService _gameService;
+        private readonly GameService _gameService;
 
         public User CurrentUser
         {
@@ -37,8 +38,8 @@ namespace TicTacToe.Web.Controllers
             }
         }
 
-        public GameController(ILogger<GameController> logger, IPlayerService playerService, IUserService userService,
-            IHttpContextAccessor httpContextAccessor, IGameService gameService)
+        public GameController(ILogger<GameController> logger, IPlayerService playerService, UserService userService,
+            IHttpContextAccessor httpContextAccessor, GameService gameService)
         {
             _logger = logger;
             _playerService = playerService;
@@ -49,13 +50,15 @@ namespace TicTacToe.Web.Controllers
 
         public IActionResult Index()
         {
-            var player = _playerService.Find(CurrentUser.Ip);
-            if (player == null)
-                player = new Player();
+            var player = _playerService.Find(CurrentUser.Ip) ?? new Player();
+
+            var currentGame = _gameService.GetCurrentGame(player.Id);
             var game = new Game
             {
+                Id = currentGame?.Id ?? 0,
                 Player = player,
-                StartDateTime = player.Id > 0 ?_gameService.GetCurrentGame(player.Id)?.StartDateTime: null
+                StartDateTime = player.Id > 0? currentGame?.StartDateTime : null,
+                GameCells = currentGame?.Id > 0 ? CreateGameCellsList(currentGame.Id): new List<GameCell>()
             };
             return View(game);
         }
@@ -110,6 +113,19 @@ namespace TicTacToe.Web.Controllers
         {
             _gameService.Stop(game);
             return RedirectToAction("Index");
+        }
+
+        [HttpPost]
+        [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
+        public IActionResult AjaxGameCells(int gameId, int cellId)
+        {
+            _gameService.ExecuteMove(gameId, cellId);
+            return PartialView("GameGridPartial", CreateGameCellsList(gameId));
+        }
+
+        private IList<GameCell> CreateGameCellsList(int gameId)
+        {
+           return _gameService.GetGameCells(gameId);
         }
     }
 }
