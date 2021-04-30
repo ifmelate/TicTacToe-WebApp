@@ -29,10 +29,11 @@ namespace TicTacToe.Services.Strategy
             if (dangerDirection != null)
                 return dangerDirection.AvailableGameCells.First();
 
-
-            var directionNumber = new Random().Next(0, 7);
-            var cellGroup = cellGroups.FirstOrDefault(d => d.Direction == (Direction)directionNumber);
-            if (cellGroup.AvailableGameCells.Count() == 1)
+            var availableByDirections =
+                cellGroups.Where(d => d.AvailableGameCells.Count > 0).ToArray();
+            var directionNumber = new Random().Next(0, availableByDirections.Length);
+            var cellGroup = availableByDirections[directionNumber];
+            if (cellGroup != null && cellGroup.AvailableGameCells.Count() == 1)
                 return cellGroup.AvailableGameCells[0];
 
             cellNumber = new Random().Next(0, cellGroup.AvailableGameCells.Count - 1);
