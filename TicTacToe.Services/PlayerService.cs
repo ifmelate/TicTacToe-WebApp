@@ -28,7 +28,7 @@ namespace TicTacToe.Services
         }
         public Models.MVC.Game.Player FindByUserId(int userId)
         {
-            var player = _playerRepository.GetById(userId);
+            var player = _playerRepository.FindByUserId(userId);
             if (player == null)
                 return null;
             return ConvertToMVCPlayer(player);
@@ -60,7 +60,7 @@ namespace TicTacToe.Services
                 Name = player.Name
             });
             _playerRepository.SaveChanges();
-            return FindById(player.Id);
+            return FindByUserId(userId);
         }
 
         public void Update(Player newPlayer)

@@ -22,7 +22,7 @@ namespace TicTacToe.Repositories
         /// <returns></returns>
         public Game GetCurrentByPlayerId(int playerId)
         {
-            return _dbSet.OrderBy(s=>s.StartDateTime).LastOrDefault(d => d.PlayerId == playerId && d.EndDateTime == null);
+            return _dbSet.FirstOrDefault(d => d.PlayerId == playerId && d.EndDateTime == null);
         }
 
         public Game GetWithPlayer(int gameId)

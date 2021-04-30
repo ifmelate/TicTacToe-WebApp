@@ -10,5 +10,7 @@ namespace TicTacToe.Models.MVC.Game
         public DateTime? StartDateTime { get; set; }
         public IList<GameCell> GameCells { get; set; }
         public Level Level { get; set; }
+        public Player WinnerPlayer { get; set; }
+        public DateTime? EndDateTime { get; set; }
     }
 }

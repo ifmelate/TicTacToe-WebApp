@@ -19,6 +19,7 @@ namespace TicTacToe.Services
         void MakePlayerMove(int gameId, int cellId);
 
         void MakeComputerMove(int gameId);
+        Models.MVC.Game.Game GetGame(int gameId);
     }
 
     public class GameService : IGameService
@@ -49,13 +50,13 @@ namespace TicTacToe.Services
             if (existPlayer == null)
             {
                 existPlayer = _playerService.Create(player, userId);
-    
+
             }
             else
                 _playerService.Update(player);
             #endregion
 
-            
+
             var computerPlayer = _playerService.GetComputerPlayer(player.GameSide == GameSideEnum.Crosses ? GameSideEnum.Zeros : GameSideEnum.Crosses);
 
 
@@ -65,7 +66,7 @@ namespace TicTacToe.Services
                 ComputerPlayerId = computerPlayer.Id,
                 LevelId = (int)gameLevel.LevelEnum
             });
-            _gameRepository.SaveChanges(); 
+            _gameRepository.SaveChanges();
 
             var currentGame = CurrentGame(existPlayer);
             if (player.GameSide == GameSideEnum.Zeros)
@@ -87,8 +88,10 @@ namespace TicTacToe.Services
                 Id = currentGame?.Id ?? 0,
                 Player = player,
                 StartDateTime = player.Id > 0 ? currentGame?.StartDateTime : null,
+                EndDateTime = player.Id > 0 ? currentGame?.EndDateTime : null,
                 GameCells = currentGame?.Id > 0 ? _gameCellService.GetAll(currentGame.Id) : new List<GameCell>(),
-                Level = new Level() {LevelEnum = LevelEnum.Easy}
+                Level = new Level() { LevelEnum = LevelEnum.Easy },
+                WinnerPlayer = currentGame?.Id > 0 && currentGame.WinnerPlayerId != null ? _playerService.FindById((int)currentGame.WinnerPlayerId) : null
             };
             return game;
         }
@@ -141,6 +144,23 @@ namespace TicTacToe.Services
             #endregion
             CheckWin(currentGame);
         }
+
+        public Models.MVC.Game.Game GetGame(int gameId)
+        {
+            var currentGame = _gameRepository.GetWithPlayer(gameId);
+            var game = new TicTacToe.Models.MVC.Game.Game()
+            {
+                Id = currentGame?.Id ?? 0,
+                Player = _playerService.FindById((int)currentGame?.PlayerId),
+                StartDateTime = currentGame.Player.Id > 0 ? currentGame?.StartDateTime : null,
+                EndDateTime = currentGame?.EndDateTime,
+                GameCells = currentGame?.Id > 0 ? _gameCellService.GetAll(currentGame.Id) : new List<GameCell>(),
+                Level = new Level() { LevelEnum = LevelEnum.Easy },
+                WinnerPlayer = currentGame?.Id > 0 && currentGame.WinnerPlayerId != null ? _playerService.FindById((int)currentGame.WinnerPlayerId) : null
+            };
+            return game;
+        }
+
         private void StopGame(int playerId)
         {
             var currentGame = _gameRepository.GetCurrentByPlayerId(playerId);
@@ -148,16 +168,19 @@ namespace TicTacToe.Services
             _gameRepository.Update(currentGame);
             _gameRepository.SaveChanges();
         }
-        private void EndGame(Game game, GameSideEnum winnerGameSideEnum)
+        private void EndGame(Game game, GameSideEnum? winnerGameSideEnum)
         {
             var currentGame = _gameRepository.GetCurrentByPlayerId(game.PlayerId);
             currentGame.EndDateTime = DateTime.Now;
-            currentGame.WinnerPlayerId = game.Player.GameSideId == (int)winnerGameSideEnum ?
-                game.PlayerId :
-                game.ComputerPlayerId;
-            currentGame.LoserPlayerId = game.Player.GameSideId != (int)winnerGameSideEnum ?
-                game.PlayerId :
-                game.ComputerPlayerId;
+            if (winnerGameSideEnum != null)
+            {
+                currentGame.WinnerPlayerId = game.Player.GameSideId == (int)winnerGameSideEnum ?
+                    game.PlayerId :
+                    game.ComputerPlayerId;
+                currentGame.LoserPlayerId = game.Player.GameSideId != (int)winnerGameSideEnum ?
+                    game.PlayerId :
+                    game.ComputerPlayerId;
+            }
             _gameRepository.Update(currentGame);
             _gameRepository.SaveChanges();
 
@@ -165,9 +188,10 @@ namespace TicTacToe.Services
         private void CheckWin(Game currentGame)
         {
             var winner = _victoryCheckService.GetWinner(currentGame);
-            if (winner != null)
+            var availableCells = _gameCellService.GetAllAvailable(currentGame.Id);
+            if (winner != null || availableCells.Count == 0)
             {
-                EndGame(currentGame, (GameSideEnum) winner);
+                EndGame(currentGame, winner);
             }
         }
     }

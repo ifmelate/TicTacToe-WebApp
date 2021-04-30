@@ -109,6 +109,13 @@ namespace TicTacToe.Web.Controllers
             _gameService.MakeComputerMove(gameId);
             return PartialView("GameGridPartial", CreateGameCellsList(gameId));
         }
+        [HttpPost]
+        [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
+        public IActionResult UpdateGameInfo(int gameId)
+        {
+            var currentGame = _gameService.GetGame(gameId);
+            return PartialView("GameInfoPartial", currentGame);
+        }
         private IList<GameCell> CreateGameCellsList(int gameId)
         {
             return _gameCellService.GetAll(gameId);

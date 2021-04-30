@@ -157,5 +157,12 @@ namespace TicTacToe.Resources
                 return ResourceManager.GetString("HardLevel", resourceCulture);
             }
         }
+        public static string PlayAgain
+        {
+            get
+            {
+                return ResourceManager.GetString("PlayAgain", resourceCulture);
+            }
+        }
     }
 }

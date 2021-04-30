@@ -6,6 +6,9 @@ using TicTacToe.Services.Strategy.Models;
 
 namespace TicTacToe.Services
 {
+    /// <summary>
+    /// Understandable structure of Cells by Directions (row, column, diagonal)
+    /// </summary>
     public static class CellGroupsHelper
     {
         public static List<CellGroup> ExecuteStructuredGroups(GameCell[] cells)

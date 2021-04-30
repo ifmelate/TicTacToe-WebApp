@@ -129,6 +129,9 @@
   <data name="InputUserName" xml:space="preserve">
     <value>Введите своё имя</value>
   </data>
+  <data name="PlayAgain" xml:space="preserve">
+    <value>Играть заново</value>
+  </data>
   <data name="PlayButton" xml:space="preserve">
     <value>Начать игру</value>
   </data>

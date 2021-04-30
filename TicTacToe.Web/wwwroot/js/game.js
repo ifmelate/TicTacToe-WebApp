@@ -21,7 +21,7 @@
                     $("#gameForm").html(data);
                 },
                 complete: function () {
-
+                    Game.UpdateGameInfo(gameId);
                 }
             });
 
@@ -38,7 +38,7 @@
                             $("#gameForm").html(data);
                         },
                         complete: function () {
-
+                            Game.UpdateGameInfo(gameId);
                         }
                     });
                 }, 500);
@@ -46,5 +46,21 @@
         });
 
         this.Initialized = true;
+    },
+    UpdateGameInfo: function(gameId) {
+        $.ajax({
+            type: 'POST',
+            url: Game.Options.UpdateGameInfoUrl,
+            traditional: true,
+            data: {
+                gameId: gameId
+            },
+            success: function (data) {
+                $("#gameInfoForm").html(data);
+            },
+            complete: function () {
+
+            }
+        });
     }
 };

@@ -33,7 +33,8 @@
         $(function () {
             TicTacToe.Views.Game.Init({
                 MakePlayerMoveUrl: '@Url.Action("AjaxMakePlayerMove")',
-                MakeComputerMoveUrl: '@Url.Action("AjaxMakeComputerMove")'
+                MakeComputerMoveUrl: '@Url.Action("AjaxMakeComputerMove")',
+                UpdateGameInfoUrl: '@Url.Action("UpdateGameInfo")'
             });
         });
     </script>

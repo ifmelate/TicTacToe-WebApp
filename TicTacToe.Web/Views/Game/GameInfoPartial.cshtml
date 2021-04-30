@@ -1,19 +1,41 @@
 ﻿@using TicTacToe.Resources
 @model TicTacToe.Models.MVC.Game.Game
-    <form  class="row" asp-action="StopGame" asp-controller="Game" method="POST">
-        <div class="col text-center h-25">
-            <div class="form-group">
-                <div class="col text-center">
-                    <label>Начало игры: @Model.StartDateTime?.ToShortDateString() @Model.StartDateTime.Value.ToShortTimeString()</label>
-                    <input type="hidden" asp-for="StartDateTime"/>
-                </div>
+<form id="gameInfoForm" class="row"  method="POST">
+    <div class="col text-center h-25">
+        <div class="form-group">
+            <div class="col text-center">
+                <label>Начало игры: @Model.StartDateTime?.ToShortDateString() @Model.StartDateTime.Value.ToShortTimeString()</label>
+                <input type="hidden" asp-for="StartDateTime" />
             </div>
-            <div class="form-group">
+        </div>
+        <div class="form-group">
+            @if (Model.EndDateTime == null)
+            {
                 <div class="col text-center">
                     <input type="hidden" asp-for="Player.Id" />
                     <label>Играют: @(Model.Player.Name) vs PC</label>
                 </div>
-            </div>
-            <button id="stopGameButton" type="submit" class="btn btn-danger m-3">@GameStrings.StopGameButton</button>
+            }
+            else
+            {
+                <div class="col text-center">
+                    @if (Model.WinnerPlayer != null)
+                    {
+                        <label>Завершение игры: @Model.EndDateTime?.ToShortDateString() @Model.EndDateTime.Value.ToShortTimeString()</label>
+                        <label>Победил: @(Model.WinnerPlayer.Name)</label>
+
+                    }
+                    else
+                    {
+                        <label>Результат: Ничья</label>
+                    }
+                </div>
+                <button class="btn btn-success m-3" type="submit" asp-action="Index" asp-controller="Game">@GameStrings.PlayAgain</button>
+            }
         </div>
+        @if (Model.EndDateTime == null)
+        {
+            <button id="stopGameButton" type="submit" asp-action="StopGame" asp-controller="Game" class="btn btn-danger m-3">@GameStrings.StopGameButton</button>
+        }
+    </div>
 </form>
