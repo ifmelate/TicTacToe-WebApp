@@ -15,7 +15,9 @@
 
   <ItemGroup>
     <ProjectReference Include="..\TicTacToe.Data.EF\TicTacToe.Data.EF.csproj" />
+    <ProjectReference Include="..\TicTacToe.Repositories\TicTacToe.Repositories.csproj" />
     <ProjectReference Include="..\TicTacToe.Resources\TicTacToe.Resources.csproj" />
+    <ProjectReference Include="..\TicTacToe.Services\TicTacToe.Services.csproj" />
   </ItemGroup>
 
 </Project>

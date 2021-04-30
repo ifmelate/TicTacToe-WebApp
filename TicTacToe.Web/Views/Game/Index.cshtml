@@ -1,26 +1,29 @@
 ﻿@using TicTacToe.Resources
+@model TicTacToe.Models.MVC.Game.Game
 @{
     ViewData["Title"] = GameStrings.PlayPageTitle;
 }
 
-<div class="container w-50">
-    <div id="gameForm" class="row h-75">
-        @for (int i = 0; i < 9; i++)
-        {
-            <div class="col-4 border">
-                <a href="javascript:void(0)">
-                    <img class="empty-cell" src="images/empty_cell.svg" />
-                    <img class="cross-cell hidden" src="images/cross.svg" />
-                    <img class="zero-cell hidden" src="images/zero.svg" />
-                </a>
-            </div>
-        }
-    </div>
-    <div class="row">
-        <div class="col text-center h-25 m-5">
-            <button type="button" class="btn btn-dark">@GameStrings.PlayButton</button>
+<div class="container w-75">
+    <div class="row mh-100">
+        <div class="col">
+            <partial name="CreatePlayerPartial" model="@Model.Player"/>
         </div>
-    </div>
+        <div class="col">
+            <div id="gameForm" class="row h-75">
+                @for (int i = 0; i < 9; i++)
+                {
+                    <div class="col-4 border border-dark">
+                        <a href="javascript:void(0)">
+                            <img class="empty-cell" src="images/empty_cell.svg" />
+                            <img class="cross-cell hidden" src="images/cross.svg" />
+                            <img class="zero-cell hidden" src="images/zero.svg" />
+                        </a>
+                    </div>
+                }
+            </div>
+        </div>
+</div>
 </div>
 
 @section Scripts

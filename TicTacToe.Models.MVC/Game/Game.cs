@@ -1,4 +1,4 @@
-﻿namespace TicTacToe.Web.Models.Game
+﻿namespace TicTacToe.Models.MVC.Game
 {
     public class Game
     {

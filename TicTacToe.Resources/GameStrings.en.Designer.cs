@@ -88,5 +88,36 @@ namespace TicTacToe.Resources {
                 return ResourceManager.GetString("PlayPageTitle", resourceCulture);
             }
         }
+
+        public static string SelectGameSide
+        {
+            get
+            {
+                return ResourceManager.GetString("SelectGameSide", resourceCulture);
+            }
+        }
+
+        public static string Crosses
+        {
+            get
+            {
+                return ResourceManager.GetString("Crosses", resourceCulture);
+            }
+        }
+
+        public static string Zeros
+        {
+            get
+            {
+                return ResourceManager.GetString("Zeros", resourceCulture);
+            }
+        }
+        public static string InputUserName
+        {
+            get
+            {
+                return ResourceManager.GetString("InputUserName", resourceCulture);
+            }
+        }
     }
 }

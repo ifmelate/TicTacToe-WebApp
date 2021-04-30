@@ -117,6 +117,12 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="Crosses" xml:space="preserve">
+    <value>Крестики</value>
+  </data>
+  <data name="InputUserName" xml:space="preserve">
+    <value>Введите своё имя</value>
+  </data>
   <data name="PlayButton" xml:space="preserve">
     <value>Начать игру</value>
   </data>
@@ -128,5 +134,11 @@
   </data>
   <data name="ResultsMenuButtonTitle" xml:space="preserve">
     <value>Результаты</value>
+  </data>
+  <data name="SelectGameSide" xml:space="preserve">
+    <value>Выберите сторону</value>
+  </data>
+  <data name="Zeros" xml:space="preserve">
+    <value>Нолики</value>
   </data>
 </root>

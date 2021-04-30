@@ -5,7 +5,7 @@ using System.Linq.Expressions;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore.Query;
 
-namespace TicTacToe.Repositories.GenericRepository
+namespace TicTacToe.Repositories.Interfaces
 {
     public interface IGenericRepository<T> where T : class
     {
@@ -35,5 +35,8 @@ namespace TicTacToe.Repositories.GenericRepository
             Func<IQueryable<T>, IIncludableQueryable<T, object>> includes = null);
         bool Any(Expression<Func<T, bool>> match);
         Task<bool> AnyAsync(Expression<Func<T, bool>> match);
+        void SaveChanges();
+        Task SaveChangesAsync();
+        void Rollback();
     }
 }

@@ -9,6 +9,9 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using TicTacToe.Data.EF;
+using TicTacToe.Repositories.GenericRepository;
+using TicTacToe.Repositories.Interfaces;
+using TicTacToe.Services;
 
 namespace TicTacToe.Web
 {
@@ -26,10 +29,20 @@ namespace TicTacToe.Web
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+           
             //data layer
             var connectionString = Configuration["ConnectionStrings:DefaultConnectionString"];
             services.AddDbContext<DataContext>(
                 options => options.UseSqlServer(connectionString, x => x.MigrationsAssembly("TicTacToe.Data.EF")));
+
+            //repositories
+            services.AddScoped<IPlayerRepository, PlayerRepository>();
+
+            //services
+            services.AddScoped<IPlayerService, PlayerService>();
+
+        
+
 
             var supportedCultures = new[]
             {

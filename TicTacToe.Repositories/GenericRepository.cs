@@ -6,8 +6,10 @@ using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Query;
 using TicTacToe.Data.EF;
+using TicTacToe.Repositories.GenericRepository;
+using TicTacToe.Repositories.Interfaces;
 
-namespace TicTacToe.Repositories.GenericRepository
+namespace TicTacToe.Repositories
 {
     public  class GenericRepository<T> :
       IGenericRepository<T>
@@ -143,7 +145,19 @@ namespace TicTacToe.Repositories.GenericRepository
 
             return query;
         }
+        public void SaveChanges()
+        {
+            _dbContext.SaveChanges();
+        }
+        public async Task SaveChangesAsync()
+        {
+            await _dbContext.SaveChangesAsync();
+        }
+        public void Rollback()
+        {
+            _dbContext.ChangeTracker.Entries().ToList().ForEach(x => x.Reload());
+        }
 
-        
+
     }
 }

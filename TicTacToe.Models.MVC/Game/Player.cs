@@ -1,14 +1,18 @@
 ﻿using TicTacToe.Models.Entity;
 
-namespace TicTacToe.Web.Models.Game
+namespace TicTacToe.Models.MVC.Game
 {
     public class Player
     {
+        public Player()
+        {
+            GameSide = GameSideEnum.Crosses;
+        }
         public string Name { get; set; }
 
-        public virtual User User { get; set; }
+        public  User User { get; set; }
 
-        public virtual GameSide GameSide { get; set; }
+        public  GameSideEnum GameSide  { get; set; }
 
     }
 }
