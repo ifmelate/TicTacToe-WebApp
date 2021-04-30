@@ -1,6 +1,7 @@
 using System.Globalization;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Localization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Razor;
@@ -9,7 +10,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using TicTacToe.Data.EF;
-using TicTacToe.Repositories.GenericRepository;
+using TicTacToe.Repositories;
 using TicTacToe.Repositories.Interfaces;
 using TicTacToe.Services;
 
@@ -35,14 +36,19 @@ namespace TicTacToe.Web
             services.AddDbContext<DataContext>(
                 options => options.UseSqlServer(connectionString, x => x.MigrationsAssembly("TicTacToe.Data.EF")));
 
+            //other
+            services.AddHttpContextAccessor();
+
             //repositories
             services.AddScoped<IPlayerRepository, PlayerRepository>();
+            services.AddScoped<IUserRepository, UserRepository>();
 
             //services
             services.AddScoped<IPlayerService, PlayerService>();
+            services.AddScoped<IUserService, UserService>();
 
         
-
+          
 
             var supportedCultures = new[]
             {
@@ -72,6 +78,7 @@ namespace TicTacToe.Web
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
+                app.UseExceptionHandler("/Game/Error");
             }
             else
             {
