@@ -6,8 +6,8 @@ namespace TicTacToe.Models.Entity
 {
     public class Game : EntityId
     {
-        public DateTime StartTime { get; set; }
-        public DateTime? EndTime { get; set; }
+        public DateTime StartDateTime { get; set; }
+        public DateTime? EndDateTime { get; set; }
 
         /// <summary>
         /// Active player

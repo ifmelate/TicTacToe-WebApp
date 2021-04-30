@@ -21,5 +21,11 @@ namespace TicTacToe.Repositories
             return _dbSet.Include(d=>d.GameSide)
                 .FirstOrDefault(d => d.User.Ip == ip);
         }
+
+        public Player GetComputerPlayer(int gameSideId)
+        {
+            return _dbSet.Include(d => d.GameSide)
+                .FirstOrDefault(d => d.UserId == null && d.GameSideId == gameSideId);
+        }
     }
 }

@@ -8,6 +8,7 @@ namespace TicTacToe.Services
         Models.MVC.Game.Player Find(string userIp);
         void Create(TicTacToe.Models.MVC.Game.Player player, int currentUserId);
         void Update(Player player);
+        Player GetComputerPlayer(GameSideEnum gameSide);
     }
     public class PlayerService: IPlayerService
     {
@@ -22,6 +23,11 @@ namespace TicTacToe.Services
             var player = _playerRepository.FindByUser(userIp);
             if (player == null)
                 return null;
+            return ConvertToMVCPlayer(player);
+        }
+
+        private  Player ConvertToMVCPlayer(Models.Entity.Player player)
+        {
             return new TicTacToe.Models.MVC.Game.Player
             {
                 GameSide = (GameSideEnum) player.GameSide.Id,
@@ -48,6 +54,12 @@ namespace TicTacToe.Services
             player.Name = newPlayer.Name;
             _playerRepository.Update(player);
             _playerRepository.SaveChanges();
+        }
+
+        public Player GetComputerPlayer(GameSideEnum gameSide)
+        {
+            var player = _playerRepository.GetComputerPlayer((int) gameSide);
+            return ConvertToMVCPlayer(player);
         }
     }
 

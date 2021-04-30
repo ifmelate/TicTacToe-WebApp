@@ -1,0 +1,15 @@
+﻿@using TicTacToe.Resources
+@model TicTacToe.Models.MVC.Game.Game
+
+    <div class="col text-center h-25">
+        <div class="form-group">
+            <div class="col text-center">
+                <label>Начало игры: @(Model.StartDateTime.Value.ToShortDateString()) @Model.StartDateTime.Value.ToShortTimeString()</label>
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="col text-center">
+                <label>Играют: @(Model.Player.Name) vs PC</label>
+            </div>
+        </div>
+    </div>

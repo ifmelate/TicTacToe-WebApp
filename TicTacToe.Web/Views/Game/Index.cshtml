@@ -7,7 +7,14 @@
 <div class="container w-75">
     <div class="row mh-100">
         <div class="col">
+            @if(Model.StartDateTime == null) 
+            { 
             <partial name="CreateOrUpdatePlayerPartial" model="@Model.Player"/>
+            }
+            else
+            {
+                <partial name="GameInfoPartial" model="@Model"/>
+            }
         </div>
         <div class="col">
             <div id="gameForm" class="row h-75">

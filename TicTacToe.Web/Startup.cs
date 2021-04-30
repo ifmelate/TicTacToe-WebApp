@@ -42,10 +42,12 @@ namespace TicTacToe.Web
             //repositories
             services.AddScoped<IPlayerRepository, PlayerRepository>();
             services.AddScoped<IUserRepository, UserRepository>();
+            services.AddScoped<IGameRepository, GameRepository>();
 
             //services
             services.AddScoped<IPlayerService, PlayerService>();
             services.AddScoped<IUserService, UserService>();
+            services.AddScoped<IGameService, GameService>();
 
         
           

@@ -11,9 +11,10 @@ namespace TicTacToe.Models.Entity.Configuration
             builder.Property(t => t.Id)
                 .ValueGeneratedOnAdd();
 
-            builder.Property(d => d.StartTime)
+            builder.Property(d => d.StartDateTime).HasColumnName("StartTime")
                 .HasDefaultValueSql("getdate()")
                 .ValueGeneratedOnAdd();
+            builder.Property(d => d.EndDateTime).HasColumnName("EndTime");
             builder.HasOne(d => d.Player)
                 .WithMany(d => d.Games)
                 .HasForeignKey(d => d.PlayerId)

@@ -1,8 +1,10 @@
-﻿namespace TicTacToe.Models.MVC.Game
+﻿using System;
+
+namespace TicTacToe.Models.MVC.Game
 {
     public class Game
     {
         public virtual Player Player { get; set; }
-
+        public DateTime? StartDateTime { get; set; }
     }
 }

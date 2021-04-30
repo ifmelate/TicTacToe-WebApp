@@ -5,6 +5,7 @@ using System.Diagnostics;
 using Microsoft.AspNetCore.Diagnostics;
 using Microsoft.AspNetCore.Http;
 using TicTacToe.Models.Entity;
+using TicTacToe.Models.MVC.Game;
 using TicTacToe.Services;
 using TicTacToe.Web.Models;
 using Game = TicTacToe.Models.MVC.Game.Game;
@@ -18,6 +19,7 @@ namespace TicTacToe.Web.Controllers
         private readonly IPlayerService _playerService;
         private readonly IUserService _userService;
         private readonly IHttpContextAccessor _httpContextAccessor;
+        private IGameService _gameService;
 
         public User CurrentUser
         {
@@ -35,12 +37,14 @@ namespace TicTacToe.Web.Controllers
             }
         }
 
-        public GameController(ILogger<GameController> logger, IPlayerService playerService, IUserService userService, IHttpContextAccessor httpContextAccessor)
+        public GameController(ILogger<GameController> logger, IPlayerService playerService, IUserService userService,
+            IHttpContextAccessor httpContextAccessor, IGameService gameService)
         {
             _logger = logger;
             _playerService = playerService;
             _userService = userService;
             _httpContextAccessor = httpContextAccessor;
+            _gameService = gameService;
         }
 
         public IActionResult Index()
@@ -50,7 +54,8 @@ namespace TicTacToe.Web.Controllers
                 player = new Player();
             var game = new Game
             {
-                Player = player
+                Player = player,
+                StartDateTime = player.Id > 0 ?_gameService.GetCurrentGame(player.Id)?.StartDateTime: null
             };
             return View(game);
         }
@@ -75,13 +80,25 @@ namespace TicTacToe.Web.Controllers
         }
 
         [HttpPost]
-        public IActionResult CreateOrUpdatePlayer(Player player)
+        public IActionResult StartGame(Player player)
         {
+            #region Create or Update Player
             var existPlayer = _playerService.Find(CurrentUser.Ip);
             if (existPlayer == null)
+            {
                 _playerService.Create(player, CurrentUser.Id);
+                existPlayer = _playerService.Find(CurrentUser.Ip);
+            }
+               
             else
                 _playerService.Update(player);
+            #endregion
+
+            #region Create Game
+            var computerPlayer = _playerService.GetComputerPlayer(player.GameSide == GameSideEnum.Crosses? GameSideEnum.Zeros: GameSideEnum.Crosses);
+
+            _gameService.Create(existPlayer.Id, computerPlayer.Id);
+            #endregion
             return NoContent();
         }
     }
