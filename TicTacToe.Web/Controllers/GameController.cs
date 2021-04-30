@@ -10,6 +10,7 @@ using TicTacToe.Models.MVC.Game;
 using TicTacToe.Services;
 using TicTacToe.Web.Models;
 using Game = TicTacToe.Models.MVC.Game.Game;
+using Level = TicTacToe.Models.MVC.Game.Level;
 using Player = TicTacToe.Models.MVC.Game.Player;
 
 namespace TicTacToe.Web.Controllers
@@ -21,6 +22,7 @@ namespace TicTacToe.Web.Controllers
         private readonly UserService _userService;
         private readonly IHttpContextAccessor _httpContextAccessor;
         private readonly GameService _gameService;
+        private readonly IGameCellService _gameCellService;
 
         public User CurrentUser
         {
@@ -39,13 +41,14 @@ namespace TicTacToe.Web.Controllers
         }
 
         public GameController(ILogger<GameController> logger, IPlayerService playerService, UserService userService,
-            IHttpContextAccessor httpContextAccessor, GameService gameService)
+            IHttpContextAccessor httpContextAccessor, GameService gameService, IGameCellService gameCellService)
         {
             _logger = logger;
             _playerService = playerService;
             _userService = userService;
             _httpContextAccessor = httpContextAccessor;
             _gameService = gameService;
+            _gameCellService = gameCellService;
         }
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
@@ -59,7 +62,8 @@ namespace TicTacToe.Web.Controllers
                 Id = currentGame?.Id ?? 0,
                 Player = player,
                 StartDateTime = player.Id > 0? currentGame?.StartDateTime : null,
-                GameCells = currentGame?.Id > 0 ? CreateGameCellsList(currentGame.Id): new List<GameCell>()
+                GameCells = currentGame?.Id > 0 ? CreateGameCellsList(currentGame.Id): new List<GameCell>(),
+                Level = new Level() { LevelEnum = LevelEnum.Easy}
             };
             return View(game);
         }
@@ -85,25 +89,29 @@ namespace TicTacToe.Web.Controllers
 
         [HttpPost]
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
-        public IActionResult StartGame(Player player)
+        public IActionResult StartGame(Game game)
         {
             #region Create or Update Player
             var existPlayer = _playerService.Find(CurrentUser.Ip);
             if (existPlayer == null)
             {
-                _playerService.Create(player, CurrentUser.Id);
+                _playerService.Create(game.Player, CurrentUser.Id);
                 existPlayer = _playerService.Find(CurrentUser.Ip);
             }
                
             else
-                _playerService.Update(player);
+                _playerService.Update(game.Player);
             #endregion
 
             #region Create Game
-            var computerPlayer = _playerService.GetComputerPlayer(player.GameSide == GameSideEnum.Crosses? GameSideEnum.Zeros: GameSideEnum.Crosses);
+            var computerPlayer = _playerService.GetComputerPlayer(game.Player.GameSide == GameSideEnum.Crosses? GameSideEnum.Zeros: GameSideEnum.Crosses);
 
-            _gameService.Create(existPlayer.Id, computerPlayer.Id);
+           var newGame =_gameService.Create(existPlayer.Id, computerPlayer.Id, game.Level);
             #endregion
+
+            if (game.Player.GameSide == GameSideEnum.Zeros)
+                _gameService.MakeComputerMove(newGame.Id);
+  
 
             return RedirectToAction("Index");
         }
@@ -118,15 +126,16 @@ namespace TicTacToe.Web.Controllers
 
         [HttpPost]
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
-        public IActionResult AjaxGameCells(int gameId, int cellId)
+        public IActionResult AjaxMakePlayerMove(int gameId, int cellId)
         {
-            _gameService.ExecuteMove(gameId, cellId);
+            _gameService.MakePlayerMove(gameId, cellId);
+            _gameService.MakeComputerMove(gameId);
             return PartialView("GameGridPartial", CreateGameCellsList(gameId));
         }
 
         private IList<GameCell> CreateGameCellsList(int gameId)
         {
-           return _gameService.GetGameCells(gameId);
+           return _gameCellService.GetAll(gameId);
         }
     }
 }

@@ -50,6 +50,8 @@ namespace TicTacToe.Web
             services.AddScoped<IPlayerService, PlayerService>();
             services.AddScoped<UserService, UserService>();
             services.AddScoped<GameService, GameService>();
+            services.AddScoped<IGameCellSelectorService, GameGameCellSelectorService>();
+            services.AddScoped<IGameCellService, GameCellService>();
 
         
           

@@ -1,13 +1,13 @@
 ﻿@using TicTacToe.Resources
-@model TicTacToe.Models.MVC.Game.Player
-<form id="userInfoForm" class="row" asp-action="StartGame" asp-controller="Game" method="POST">
+@model TicTacToe.Models.MVC.Game.Game
+
     <div class="col text-center h-25">
         <div class="form-group">
             <div class="col text-center">
-                <input type="hidden" asp-for="Id"/>
+                <input type="hidden" asp-for="Player.Id"/>
                 <label>@GameStrings.InputUserName:</label>
                 <div class="input-group mb-3">
-                    <input type="text" class="form-control" asp-for="Name" aria-describedby="basic-addon3">
+                    <input type="text" class="form-control" asp-for="Player.Name" aria-describedby="basic-addon3">
                 </div>
             </div>
         </div>
@@ -16,12 +16,11 @@
                 <label>@GameStrings.SelectGameSide:</label>
                 <div class="btn-group m-1" role="group">
                     <div class="form-check m-1">
-                        @Html.EditorFor(m => m.GameSide, "EnumRadioButtonList")
+                        @Html.EditorFor(m => m.Player.GameSide, "EnumRadioButtonList")
                     </div>
 
                 </div>
             </div>
         </div>
-        <button type="submit" class="btn btn-dark m-3">@GameStrings.PlayButton</button>
+       
     </div>
-</form>

@@ -9,16 +9,20 @@
         <div class="col">
             @if(Model.StartDateTime == null) 
             { 
-                <partial name="CreateOrUpdatePlayerPartial" model="@Model.Player"/>
-            }
-            else
-            {
-                <partial name="GameInfoPartial" model="@Model"/>
+            <form id="userInfoForm" class="row" asp-action="StartGame" asp-controller="Game" method="POST">
+                <partial name="CreateOrUpdatePlayerPartial"/>
+                <partial name="LevelPartial" />
+                <button type="submit" class="btn btn-dark m-3">@GameStrings.PlayButton</button>
+            </form>
+                }
+                else
+                {
+                <partial name="GameInfoPartial" model="@Model" />
                 <div class="col">
-                   <partial name="GameGridPartial" model="@Model.GameCells"/>
+                    <partial name="GameGridPartial" model="@Model.GameCells" />
                 </div>
-            }
-        </div>
+                }
+</div>
         
 </div>
 </div>
@@ -28,7 +32,7 @@
     <script type="text/javascript">
         $(function () {
             TicTacToe.Views.Game.Init({
-                ReloadGameCellsUrl:'@Url.Action("AjaxGameCells")'
+                ReloadGameCellsUrl: '@Url.Action("AjaxMakePlayerMove")'
             });
         });
     </script>
