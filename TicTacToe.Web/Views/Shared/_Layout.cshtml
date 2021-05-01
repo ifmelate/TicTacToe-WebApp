@@ -1,4 +1,7 @@
-﻿@using TicTacToe.Resources
+﻿@using Microsoft.AspNetCore.Builder
+@using Microsoft.AspNetCore.Localization
+@using Microsoft.Extensions.Options
+@using TicTacToe.Resources
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -27,8 +30,12 @@
                         </li>
                     </ul>
                 </div>
+                <div class="nav-tabs text-right justify-content-lg-end">
+                    @await Html.PartialAsync("_SelectLanguagePartial")
+                </div>
             </div>
         </nav>
+
     </header>
     <div class="container">
         <main role="main" class="pb-3">

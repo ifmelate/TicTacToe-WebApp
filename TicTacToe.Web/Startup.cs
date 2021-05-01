@@ -1,4 +1,6 @@
 using System.Globalization;
+using System.Text.Encodings.Web;
+using System.Text.Unicode;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
@@ -9,6 +11,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using Microsoft.Extensions.WebEncoders;
 using TicTacToe.Data.EF;
 using TicTacToe.Repositories;
 using TicTacToe.Repositories.Interfaces;
@@ -18,8 +21,8 @@ namespace TicTacToe.Web
 {
     public class Startup
     {
-        private const string DefaultCultureName = "ru";
-        private const string SecondCultureName = "en";
+        private const string DefaultCultureName = "en";
+        private const string SecondCultureName = "ru-RU";
         public Startup(IConfiguration configuration)
         {
             Configuration = configuration;
@@ -58,25 +61,32 @@ namespace TicTacToe.Web
         
           
 
-            var supportedCultures = new[]
-            {
-                new CultureInfo(SecondCultureName),
-                new CultureInfo(DefaultCultureName)
-            };
+          
 
             services.Configure<RequestLocalizationOptions>(
                 opts =>
                 {
+                    var supportedCultures = new[]
+                    {
+                        new CultureInfo(SecondCultureName),
+                        new CultureInfo(DefaultCultureName)
+                    };
                     opts.DefaultRequestCulture = new RequestCulture(DefaultCultureName, DefaultCultureName);
                     opts.SupportedCultures = supportedCultures;
                     opts.SupportedUICultures = supportedCultures;
 
                 });
             services.AddMvc(options => options.MaxModelValidationErrors = 500)
+                .AddDataAnnotationsLocalization(options =>
+                {
+                    options.DataAnnotationLocalizerProvider = (type, factory) =>
+                        factory.Create(typeof(Resources.GameStrings));
+                })
                 .AddViewLocalization(LanguageViewLocationExpanderFormat.Suffix)
                 .SetCompatibilityVersion(CompatibilityVersion.Latest)
                 ;
             services.AddLocalization();
+            services.Configure<WebEncoderOptions>(options => options.TextEncoderSettings = new TextEncoderSettings(UnicodeRanges.All));
             services.AddControllersWithViews();
         }
 
