@@ -1,0 +1,63 @@
+﻿@using TicTacToe.Models.MVC.Game
+@using TicTacToe.Resources
+@model TicTacToe.Models.MVC.Results.Results
+@{
+    ViewData["Title"] = ResultsStrings.ResultsPageTitle;
+}
+
+<div class="container">
+    <table class="table">
+        <thead>
+            <tr>
+                <th scope="col">№</th>
+                <th scope="col">@ResultsStrings.StartColumn</th>
+                <th scope="col">@ResultsStrings.PlayerColumn</th>
+                <th scope="col">@ResultsStrings.GameSideColumn</th>
+                <th scope="col">@ResultsStrings.ResultTitle</th>
+                <th scope="col">@ResultsStrings.EndColumn</th>
+            </tr>
+        </thead>
+        <tbody>
+            @for (var index = 1; index < Model.GameResults.Count(); index++)
+            {
+                var game = Model.GameResults[index];
+                <tr>
+                    <th scope="row">@index</th>
+                    <td>@game.StartDateTime.ToShortDateString() @game.StartDateTime.ToLongTimeString()</td>
+                    <td>@game.Player.Name</td>
+                    <td>@if (game.Player.GameSideEnum == GameSideEnum.Crosses)
+                        {
+                            @ResultsStrings.Crosses
+                        }
+                        else
+                        {
+                            @ResultsStrings.Zeros
+                        }</td>
+                    <td>
+                        @if (game.WinnerPlayer == null)
+                        {
+                            @ResultsStrings.Tie
+                        }
+                        else
+                        {
+                            @game.WinnerPlayer?.Name
+                        }
+                    </td>
+                    <td>@game.EndDateTime?.ToShortDateString() @game.EndDateTime?.ToLongTimeString()</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+
+</div>
+
+@section Scripts
+{
+    @*<script type="text/javascript">
+            $(function () {
+                TicTacToe.Views.Results.Init({
+
+                });
+            });
+        </script>*@
+}
