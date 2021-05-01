@@ -45,7 +45,7 @@ namespace TicTacToe.Services
         {
             return new TicTacToe.Models.MVC.Game.Player
             {
-                GameSide = (GameSideEnum) player.GameSide.Id,
+                GameSideEnum = (GameSideEnum) player.GameSide.Id,
                 Name = player.Name,
                 Id = player.Id
             };
@@ -56,7 +56,7 @@ namespace TicTacToe.Services
             _playerRepository.Add(new Models.Entity.Player
             {
                 UserId = userId,
-                GameSideId = (int) player.GameSide,
+                GameSideId = (int) player.GameSideEnum,
                 Name = player.Name
             });
             _playerRepository.SaveChanges();
@@ -66,7 +66,7 @@ namespace TicTacToe.Services
         public void Update(Player newPlayer)
         {
             var player = _playerRepository.GetById(newPlayer.Id);
-            player.GameSideId = (int) newPlayer.GameSide;
+            player.GameSideId = (int) newPlayer.GameSideEnum;
             player.Name = newPlayer.Name;
             _playerRepository.Update(player);
             _playerRepository.SaveChanges();

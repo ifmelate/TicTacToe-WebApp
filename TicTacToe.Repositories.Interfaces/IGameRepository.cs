@@ -1,4 +1,6 @@
-﻿using TicTacToe.Models.Entity;
+﻿using System.Collections;
+using System.Collections.Generic;
+using TicTacToe.Models.Entity;
 
 namespace TicTacToe.Repositories.Interfaces
 {
@@ -11,5 +13,6 @@ namespace TicTacToe.Repositories.Interfaces
         Game GetCurrentByPlayerId(int playerId);
 
         Game GetWithPlayer(int gameId);
+        IEnumerable<Game> GetAllWithPlayers();
     }
 }

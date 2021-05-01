@@ -7,11 +7,10 @@ namespace TicTacToe.Models.MVC.Game
         public int Id { get; set; }
         public Player()
         {
-            GameSide = GameSideEnum.Crosses;
+            GameSideEnum = GameSideEnum.Crosses;
         }
         public string Name { get; set; }
-
-        public  GameSideEnum GameSide  { get; set; }
+        public  GameSideEnum GameSideEnum  { get; set; }
 
     }
 }

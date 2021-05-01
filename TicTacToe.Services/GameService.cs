@@ -57,7 +57,7 @@ namespace TicTacToe.Services
             #endregion
 
 
-            var computerPlayer = _playerService.GetComputerPlayer(player.GameSide == GameSideEnum.Crosses ? GameSideEnum.Zeros : GameSideEnum.Crosses);
+            var computerPlayer = _playerService.GetComputerPlayer(player.GameSideEnum == GameSideEnum.Crosses ? GameSideEnum.Zeros : GameSideEnum.Crosses);
 
 
             _gameRepository.Add(new Game
@@ -69,7 +69,7 @@ namespace TicTacToe.Services
             _gameRepository.SaveChanges();
 
             var currentGame = CurrentGame(existPlayer);
-            if (player.GameSide == GameSideEnum.Zeros)
+            if (player.GameSideEnum == GameSideEnum.Zeros)
                 MakeComputerMove(currentGame.Id);
             return currentGame;
         }

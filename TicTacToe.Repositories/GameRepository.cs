@@ -1,4 +1,5 @@
-﻿using System.Linq;
+﻿using System.Collections.Generic;
+using System.Linq;
 using Microsoft.EntityFrameworkCore;
 using TicTacToe.Data.EF;
 using TicTacToe.Models.Entity;
@@ -31,6 +32,14 @@ namespace TicTacToe.Repositories
                 .Include(d => d.Player)
                 .Include(d=>d.ComputerPlayer)
                 .FirstOrDefault(d => d.Id == gameId);
+        }
+
+        public IEnumerable<Game> GetAllWithPlayers()
+        {
+            return _dbSet.Include(d => d.Player)
+                .Include(d => d.ComputerPlayer)
+                .Include(d => d.WinnerPlayer)
+                .Include(d => d.LoserPlayer);
         }
     }
 }

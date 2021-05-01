@@ -118,45 +118,30 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="Crosses" xml:space="preserve">
-    <value>Крестики</value>
+    <value>Crosses</value>
   </data>
-  <data name="EasyLevel" xml:space="preserve">
-    <value>Легко</value>
+  <data name="EndColumn" xml:space="preserve">
+    <value>End</value>
   </data>
-  <data name="HardLevel" xml:space="preserve">
-    <value>Сложно</value>
+  <data name="GameSideColumn" xml:space="preserve">
+    <value>Game's side</value>
   </data>
-  <data name="InputUserName" xml:space="preserve">
-    <value>Введите своё имя</value>
+  <data name="PlayerColumn" xml:space="preserve">
+    <value>Player</value>
   </data>
-  <data name="PlayAgain" xml:space="preserve">
-    <value>Играть заново</value>
+  <data name="ResultColumn" xml:space="preserve">
+    <value>Result (tie or winner)</value>
   </data>
-  <data name="PlayButton" xml:space="preserve">
-    <value>Начать игру</value>
+  <data name="ResultsPageTitle" xml:space="preserve">
+    <value>Game's results</value>
   </data>
-  <data name="PlayMenuButtonTitle" xml:space="preserve">
-    <value>Играть</value>
-  </data>
-  <data name="PlayPageTitle" xml:space="preserve">
-    <value>Играть</value>
-  </data>
-  <data name="ResultsMenuButtonTitle" xml:space="preserve">
-    <value>Результаты</value>
-  </data>
-  <data name="SelectGameLevel" xml:space="preserve">
-    <value>Выберите уровень игры</value>
-  </data>
-  <data name="SelectGameSide" xml:space="preserve">
-    <value>Выберите сторону</value>
-  </data>
-  <data name="StopGameButton" xml:space="preserve">
-    <value>Завершить</value>
+  <data name="StartColumn" xml:space="preserve">
+    <value>Start</value>
   </data>
   <data name="Tie" xml:space="preserve">
-    <value>Ничья</value>
+    <value>Tie</value>
   </data>
   <data name="Zeros" xml:space="preserve">
-    <value>Нолики</value>
+    <value>Zeros</value>
   </data>
 </root>

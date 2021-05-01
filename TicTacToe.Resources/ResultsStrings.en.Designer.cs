@@ -23,7 +23,7 @@ namespace TicTacToe.Resources
     [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "16.0.0.0")]
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
-    public class GameStrings
+    public class ResultsStrings
     {
 
         private static global::System.Resources.ResourceManager resourceMan;
@@ -31,7 +31,7 @@ namespace TicTacToe.Resources
         private static global::System.Globalization.CultureInfo resourceCulture;
 
         [global::System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1811:AvoidUncalledPrivateCode")]
-        public GameStrings()
+        public ResultsStrings()
         {
         }
 
@@ -45,7 +45,7 @@ namespace TicTacToe.Resources
             {
                 if (object.ReferenceEquals(resourceMan, null))
                 {
-                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("TicTacToe.Resources.GameStrings", typeof(GameStrings).Assembly);
+                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("TicTacToe.Resources.ResultsStrings", typeof(GameStrings).Assembly);
                     resourceMan = temp;
                 }
                 return resourceMan;
@@ -69,40 +69,18 @@ namespace TicTacToe.Resources
             }
         }
 
-        public static string PlayButton
+        public static string ResultsPageTitle
         {
             get
             {
-                return ResourceManager.GetString("PlayButton", resourceCulture);
+                return ResourceManager.GetString("ResultsPageTitle", resourceCulture);
             }
         }
-        public static string PlayMenuButtonTitle
+        public static string Tie
         {
             get
             {
-                return ResourceManager.GetString("PlayMenuButtonTitle", resourceCulture);
-            }
-        }
-        public static string ResultsMenuButtonTitle
-        {
-            get
-            {
-                return ResourceManager.GetString("ResultsMenuButtonTitle", resourceCulture);
-            }
-        }
-        public static string PlayPageTitle
-        {
-            get
-            {
-                return ResourceManager.GetString("PlayPageTitle", resourceCulture);
-            }
-        }
-
-        public static string SelectGameSide
-        {
-            get
-            {
-                return ResourceManager.GetString("SelectGameSide", resourceCulture);
+                return ResourceManager.GetString("Tie", resourceCulture);
             }
         }
 
@@ -121,55 +99,42 @@ namespace TicTacToe.Resources
                 return ResourceManager.GetString("Zeros", resourceCulture);
             }
         }
-        public static string InputUserName
+
+        public static string PlayerColumn
         {
             get
             {
-                return ResourceManager.GetString("InputUserName", resourceCulture);
+                return ResourceManager.GetString("PlayerColumn", resourceCulture);
             }
         }
-        public static string StopGameButton
+        public static string GameSideColumn
         {
             get
             {
-                return ResourceManager.GetString("StopGameButton", resourceCulture);
+                return ResourceManager.GetString("GameSideColumn", resourceCulture);
+            }
+        }
+        public static string ResultTitle
+        {
+            get
+            {
+                return ResourceManager.GetString("ResultColumn", resourceCulture);
+            }
+        }
+        public static string StartColumn
+        {
+            get
+            {
+                return ResourceManager.GetString("StartColumn", resourceCulture);
+            }
+        }
+        public static string EndColumn
+        {
+            get
+            {
+                return ResourceManager.GetString("EndColumn", resourceCulture);
             }
         }
 
-        public static string SelectGameLevel
-        {
-            get
-            {
-                return ResourceManager.GetString("SelectGameLevel", resourceCulture);
-            }
-        }
-        public static string EasyLevel
-        {
-            get
-            {
-                return ResourceManager.GetString("EasyLevel", resourceCulture);
-            }
-        }
-        public static string HardLevel
-        {
-            get
-            {
-                return ResourceManager.GetString("HardLevel", resourceCulture);
-            }
-        }
-        public static string PlayAgain
-        {
-            get
-            {
-                return ResourceManager.GetString("PlayAgain", resourceCulture);
-            }
-        }
-        public static string Tie
-        {
-            get
-            {
-                return ResourceManager.GetString("Tie", resourceCulture);
-            }
-        }
     }
 }
