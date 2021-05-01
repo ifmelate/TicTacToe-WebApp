@@ -170,7 +170,7 @@ namespace TicTacToe.Services
         }
         private void EndGame(Game game, GameSideEnum? winnerGameSideEnum)
         {
-            var currentGame = _gameRepository.GetCurrentByPlayerId(game.PlayerId);
+            var currentGame = _gameRepository.GetWithPlayer(game.Id);
             currentGame.EndDateTime = DateTime.Now;
             if (winnerGameSideEnum != null)
             {

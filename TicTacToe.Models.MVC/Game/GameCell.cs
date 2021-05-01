@@ -11,5 +11,10 @@ namespace TicTacToe.Models.MVC.Game
 
         public int GameId { get; set; }
 
+        /// <summary>
+        /// For manual emphasize win combination of cells
+        /// </summary>
+        public bool IsHighlighted { get; set; }
+
     }
 }

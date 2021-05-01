@@ -4,26 +4,41 @@
 <div id="gameForm" class="row h-75">
     @foreach (var cell in Model)
     {
-        <div class="col-4 border border-dark">
-            <input type="hidden" asp-for="@cell.CellId"/>
-            <input type="hidden" asp-for="@cell.GameId"/>
-            @if (cell.GameSide == null)
+    <div class="col-4 border border-dark">
+        <input type="hidden" asp-for="@cell.CellId" />
+        <input type="hidden" asp-for="@cell.GameId" />
+        @if (cell.GameSide == null)
+        {
+            <a class="empty-cell" href="javascript:void(0)">
+                <img src="images/empty_cell.svg" />
+            </a>}
+        else
+        {
+            if (cell.GameSide == GameSideEnum.Crosses)
             {
-                <a class="empty-cell" href="javascript:void(0)">
-                    <img src="images/empty_cell.svg"/>
-                </a>}
-            else
-            {
-                if (cell.GameSide ==  GameSideEnum.Crosses)
+                @if (!cell.IsHighlighted)
                 {
-                    <img class="cross-cell" src="images/cross.svg"/>
+                    <img class="cross-cell" src="images/cross.svg" />
                 }
                 else
                 {
-                    <img class="zero-cell" src="images/zero.svg"/>
+                    <img class="cross-cell" src="images/cross_highlighted.svg" />
                 }
             }
+            else
+            {
+                @if (!cell.IsHighlighted)
+                {
+                    <img class="zero-cell" src="images/zero.svg" />
+                }
+                else
+                {
+                    <img class="zero-cell" src="images/zero_highlighted.svg" />
+                }
 
-        </div>
+            }
+        }
+
+    </div>
     }
 </div>
