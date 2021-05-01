@@ -18,6 +18,7 @@
                 },
                 traditional: true,
                 success: function (data) {
+                    $("#gameForm").html('');
                     $("#gameForm").html(data);
                 },
                 complete: function () {
@@ -35,6 +36,7 @@
                         },
                         traditional: true,
                         success: function (data) {
+                            $("#gameForm").html('');
                             $("#gameForm").html(data);
                         },
                         complete: function () {

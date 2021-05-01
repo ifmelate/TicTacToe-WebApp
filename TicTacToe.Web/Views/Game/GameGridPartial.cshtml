@@ -1,16 +1,16 @@
 ﻿@using TicTacToe.Models.MVC.Game
 @using TicTacToe.Resources
 @model IList<TicTacToe.Models.MVC.Game.GameCell>
-<div id="gameForm" class="row h-50 justify-content-center">
-    <div class="col w-50">
+<form id="gameForm" class="row justify-content-center px-lg-5">
 
+    <div class="col-8  px-lg-5">
         @for (var index = 1; index < 4; index++)
         {
-        var firstRow = Model.Where(d=>d.Cell.Name.Contains($"{index}."));
-            <div class="row text-center">
-                @foreach(var cell in firstRow)
+        var row = Model.Where(d=>d.Cell.Name.Contains($"{index}."));
+            <div class="row">
+                @foreach(var cell in row)
                 {
-                    <div class="col-4 text-center border border-dark">
+                    <div class="col-4  border border-dark">
                         <div class="box text-center">
                             <input type="hidden" asp-for="@cell.CellId" />
                             <input type="hidden" asp-for="@cell.GameId" />
@@ -54,4 +54,5 @@
         
         }
     </div>
-</div>
+
+</form>

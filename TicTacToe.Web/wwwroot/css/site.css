@@ -73,7 +73,6 @@ body {
 /*Custom declarations*/
 .box {
     background: #fff;
-    height: 100px;
 }
 
 .hidden {
@@ -81,6 +80,5 @@ body {
 }
 
 .empty-cell, .cross-cell, .zero-cell {
-    display: block;
     margin: 0 auto;
 }

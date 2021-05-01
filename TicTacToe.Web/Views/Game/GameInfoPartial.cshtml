@@ -1,7 +1,7 @@
 ﻿@using TicTacToe.Resources
 @model TicTacToe.Models.MVC.Game.Game
-<form id="gameInfoForm" class="row"  method="POST">
-    <div class="col text-center h-25">
+<form id="gameInfoForm" class="row h-25"  method="POST">
+    <div class="col text-center ">
         <div class="form-group">
             <div class="col text-center">
                 <label>Начало игры: @Model.StartDateTime?.ToShortDateString() @Model.StartDateTime.Value.ToLongTimeString()</label>
