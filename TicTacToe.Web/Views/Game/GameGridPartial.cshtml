@@ -9,7 +9,7 @@
         <input type="hidden" asp-for="@cell.GameId" />
         @if (cell.GameSide == null)
         {
-            <a class="empty-cell" href="javascript:void(0)">
+            <a class="empty-cell" href="@(Model.Any(s=>s.IsHighlighted)? "":"javascript:void(0)")">
                 <img src="images/empty_cell.svg" />
             </a>}
         else
