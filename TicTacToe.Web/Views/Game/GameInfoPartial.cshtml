@@ -4,7 +4,7 @@
     <div class="col text-center h-25">
         <div class="form-group">
             <div class="col text-center">
-                <label>Начало игры: @Model.StartDateTime?.ToShortDateString() @Model.StartDateTime.Value.ToShortTimeString()</label>
+                <label>Начало игры: @Model.StartDateTime?.ToShortDateString() @Model.StartDateTime.Value.ToLongTimeString()</label>
                 <input type="hidden" asp-for="StartDateTime" />
             </div>
         </div>
@@ -19,9 +19,11 @@
             else
             {
                 <div class="col text-center">
+                    <label>Завершение игры: @Model.EndDateTime?.ToShortDateString() @Model.EndDateTime.Value.ToLongTimeString()</label>
+                    <br/>
                     @if (Model.WinnerPlayer != null)
                     {
-                        <label>Завершение игры: @Model.EndDateTime?.ToShortDateString() @Model.EndDateTime.Value.ToShortTimeString()</label>
+
                         <label>Победил: @(Model.WinnerPlayer.Name)</label>
 
                     }

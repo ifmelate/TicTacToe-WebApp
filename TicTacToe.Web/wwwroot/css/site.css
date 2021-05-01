@@ -73,8 +73,7 @@ body {
 /*Custom declarations*/
 .box {
     background: #fff;
-    border-radius: 4px;
-    padding-bottom: 100%;
+    height: 100px;
 }
 
 .hidden {
@@ -83,4 +82,5 @@ body {
 
 .empty-cell, .cross-cell, .zero-cell {
     display: block;
+    margin: 0 auto;
 }

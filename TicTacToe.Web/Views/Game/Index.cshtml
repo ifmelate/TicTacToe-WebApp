@@ -4,27 +4,23 @@
     ViewData["Title"] = GameStrings.PlayPageTitle;
 }
 
-<div class="container w-50">
-    <div class="row mh-100">
-        <div class="col">
+<div class="container w-75">
+    <div class="col justify-content-center text-center">
             @if(Model.StartDateTime == null) 
             { 
-            <form id="userInfoForm" class="row" asp-action="StartGame" asp-controller="Game" method="POST">
+            <form id="userInfoForm" class="container" asp-action="StartGame" asp-controller="Game" method="POST">
                 <partial name="CreateOrUpdatePlayerPartial"/>
                 <partial name="LevelPartial" />
-                <button type="submit" class="btn btn-dark m-3">@GameStrings.PlayButton</button>
+                <button type="submit" class="btn btn-dark m-1">@GameStrings.PlayButton</button>
             </form>
                 }
                 else
                 {
                 <partial name="GameInfoPartial" model="@Model" />
-                <div class="col">
                     <partial name="GameGridPartial" model="@Model.GameCells" />
-                </div>
                 }
 </div>
         
-</div>
 </div>
 
 @section Scripts

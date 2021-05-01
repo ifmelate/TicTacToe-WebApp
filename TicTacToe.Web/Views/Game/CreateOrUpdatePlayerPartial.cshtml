@@ -1,26 +1,21 @@
 ﻿@using TicTacToe.Resources
 @model TicTacToe.Models.MVC.Game.Game
-
-    <div class="col text-center h-25">
-        <div class="form-group">
-            <div class="col text-center">
-                <input type="hidden" asp-for="Player.Id"/>
-                <label>@GameStrings.InputUserName:</label>
-                <div class="input-group mb-3">
-                    <input type="text" class="form-control" asp-for="Player.Name" aria-describedby="basic-addon3">
-                </div>
-            </div>
+<div class="form-row justify-content-center">
+    <div class="form-group">
+        <input type="hidden" asp-for="Player.Id" />
+        <label>@GameStrings.InputUserName:</label>
+        <div class="input-group mb-1">
+            <input type="text" class="form-control text-center" asp-for="Player.Name" aria-describedby="basic-addon3">
         </div>
-        <div class="form-group">
-            <div class="col text-center">
-                <label>@GameStrings.SelectGameSide:</label>
-                <div class="btn-group m-1" role="group">
-                    <div class="form-check m-1">
-                        @Html.EditorFor(m => m.Player.GameSide, "EnumRadioButtonList")
-                    </div>
-
-                </div>
-            </div>
-        </div>
-       
     </div>
+</div>
+<div class="form-row justify-content-center">
+    <div class="form-group m-1">
+        <label class="mb-3">@GameStrings.SelectGameSide:</label>
+        <div class="btn-group mt-2" role="group">
+            <div class="form-check m-1  text-center">
+                @Html.EditorFor(m => m.Player.GameSide, "EnumRadioButtonList")
+            </div>
+        </div>
+    </div>
+</div>
