@@ -12,6 +12,7 @@
             $.ajax({
                 type: 'POST',
                 url: Game.Options.MakePlayerMoveUrl,
+                async:false,
                 data: {
                     gameId: gameId,
                     cellId: cellId
@@ -31,6 +32,7 @@
                     $.ajax({
                         type: 'POST',
                         url: Game.Options.MakeComputerMoveUrl,
+                        async: false,
                         data: {
                             gameId: gameId
                         },
