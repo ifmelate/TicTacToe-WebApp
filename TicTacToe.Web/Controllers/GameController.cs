@@ -93,7 +93,7 @@ namespace TicTacToe.Web.Controllers
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult StopGame(Game game)
         {
-            _gameService.Stop(game);
+            _gameService.Stop(game.Id);
             return RedirectToAction("Index");
         }
 

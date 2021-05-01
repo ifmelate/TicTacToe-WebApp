@@ -14,7 +14,7 @@ namespace TicTacToe.Services
     {
         Models.MVC.Game.Game Create(int userId, Models.MVC.Game.Player player, Level gameLevel);
         TicTacToe.Models.MVC.Game.Game GetCurrentGame(string userIp);
-        void Stop(Models.MVC.Game.Game game);
+        void Stop(int gameId);
 
         void MakePlayerMove(int gameId, int cellId);
 
@@ -96,9 +96,9 @@ namespace TicTacToe.Services
             return game;
         }
 
-        public void Stop(Models.MVC.Game.Game game)
+        public void Stop(int gameId)
         {
-            StopGame(game.Player.Id);
+            StopGame(gameId);
         }
 
 
@@ -106,6 +106,8 @@ namespace TicTacToe.Services
         public void MakePlayerMove(int gameId, int cellId)
         {
             var currentGame = _gameRepository.GetWithPlayer(gameId);
+            if (currentGame.EndDateTime != null)
+                return;
             #region Player Move
 
             _moveRepository.Add(new Move
@@ -125,6 +127,8 @@ namespace TicTacToe.Services
         public void MakeComputerMove(int gameId)
         {
             var currentGame = _gameRepository.GetWithPlayer(gameId);
+            if(currentGame.EndDateTime != null) 
+                return;
             ISelectorStrategy strategy = currentGame.LevelId == (int)LevelEnum.Easy ?
                 new EasySelectorStrategy()
                 : (ISelectorStrategy)new HardSelectorStrategy();
@@ -161,9 +165,9 @@ namespace TicTacToe.Services
             return game;
         }
 
-        private void StopGame(int playerId)
+        private void StopGame(int gameId)
         {
-            var currentGame = _gameRepository.GetCurrentByPlayerId(playerId);
+            var currentGame = _gameRepository.GetById(gameId);
             currentGame.EndDateTime = DateTime.Now;
             _gameRepository.Update(currentGame);
             _gameRepository.SaveChanges();
