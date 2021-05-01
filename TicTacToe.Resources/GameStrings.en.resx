@@ -123,6 +123,12 @@
   <data name="EasyLevel" xml:space="preserve">
     <value>Easy</value>
   </data>
+  <data name="EndGameLabel" xml:space="preserve">
+    <value>Ending of game</value>
+  </data>
+  <data name="GameStartLabel" xml:space="preserve">
+    <value>Game start</value>
+  </data>
   <data name="HardLevel" xml:space="preserve">
     <value>Hard</value>
   </data>
@@ -141,6 +147,12 @@
   <data name="PlayPageTitle" xml:space="preserve">
     <value>Play</value>
   </data>
+  <data name="PlaysLabel" xml:space="preserve">
+    <value>Plays</value>
+  </data>
+  <data name="Result" xml:space="preserve">
+    <value>Result</value>
+  </data>
   <data name="ResultsMenuButtonTitle" xml:space="preserve">
     <value>Results</value>
   </data>
@@ -155,6 +167,9 @@
   </data>
   <data name="Tie" xml:space="preserve">
     <value>Tie</value>
+  </data>
+  <data name="WonLabel" xml:space="preserve">
+    <value>Won</value>
   </data>
   <data name="Zeros" xml:space="preserve">
     <value>Zeros</value>

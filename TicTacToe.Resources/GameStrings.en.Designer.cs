@@ -171,5 +171,41 @@ namespace TicTacToe.Resources
                 return ResourceManager.GetString("Tie", resourceCulture);
             }
         }
+        public static string EndGameLabel
+        {
+            get
+            {
+                return ResourceManager.GetString("EndGameLabel", resourceCulture);
+            }
+        }
+        public static string WonLabel
+        {
+            get
+            {
+                return ResourceManager.GetString("WonLable", resourceCulture);
+            }
+        }
+        public static string Result
+        {
+            get
+            {
+                return ResourceManager.GetString("Result", resourceCulture);
+            }
+        }
+        public static string PlaysLabel
+        {
+            get
+            {
+                return ResourceManager.GetString("PlaysLabel", resourceCulture);
+            }
+        }
+        public static string GameStartLabel
+        {
+            get
+            {
+                return ResourceManager.GetString("GameStartLabel", resourceCulture);
+            }
+        }
+
     }
 }

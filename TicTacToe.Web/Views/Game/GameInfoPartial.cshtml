@@ -4,8 +4,9 @@
     <div class="col text-center ">
         <div class="form-group">
             <div class="col text-center">
-                <label>Начало игры: @Model.StartDateTime?.ToShortDateString() @Model.StartDateTime.Value.ToLongTimeString()</label>
-                <input type="hidden" asp-for="StartDateTime" />
+                <input type="hidden" asp-for="Id"/>
+                <label>@(GameStrings.GameStartLabel): @Model.StartDateTime?.ToShortDateString() @Model.StartDateTime.Value.ToLongTimeString()</label>
+                <input type="hidden" asp-for="StartDateTime"/>
             </div>
         </div>
         <div class="form-group">
@@ -13,23 +14,23 @@
             {
                 <div class="col text-center">
                     <input type="hidden" asp-for="Player.Id" />
-                    <label>Играют: @(Model.Player.Name) vs PC</label>
+                    <label>@(GameStrings.PlaysLabel): @(Model.Player.Name) vs PC</label>
                 </div>
             }
             else
             {
                 <div class="col text-center">
-                    <label>Завершение игры: @Model.EndDateTime?.ToShortDateString() @Model.EndDateTime.Value.ToLongTimeString()</label>
+                    <label>@(GameStrings.EndGameLabel): @Model.EndDateTime?.ToShortDateString() @Model.EndDateTime.Value.ToLongTimeString()</label>
                     <br/>
                     @if (Model.WinnerPlayer != null)
                     {
 
-                        <label>Победил: @(Model.WinnerPlayer.Name)</label>
+                <label>@(GameStrings.WonLabel): @(Model.WinnerPlayer.Name)</label>
 
                     }
                     else
                     {
-                        <label>Результат: Ничья</label>
+                        <label>@(GameStrings.Result): @GameStrings.Tie</label>
                     }
                 </div>
                 <button class="btn btn-success m-3" type="submit" asp-action="Index" asp-controller="Game">@GameStrings.PlayAgain</button>

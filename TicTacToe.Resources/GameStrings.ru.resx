@@ -123,6 +123,9 @@
   <data name="EasyLevel" xml:space="preserve">
     <value>Легко</value>
   </data>
+  <data name="EndGameLabel" xml:space="preserve">
+    <value>Завершение игры</value>
+  </data>
   <data name="HardLevel" xml:space="preserve">
     <value>Сложно</value>
   </data>
@@ -141,6 +144,12 @@
   <data name="PlayPageTitle" xml:space="preserve">
     <value>Играть</value>
   </data>
+  <data name="PlaysLabel" xml:space="preserve">
+    <value>Играют</value>
+  </data>
+  <data name="Result" xml:space="preserve">
+    <value>Результат</value>
+  </data>
   <data name="ResultsMenuButtonTitle" xml:space="preserve">
     <value>Результаты</value>
   </data>
@@ -156,7 +165,13 @@
   <data name="Tie" xml:space="preserve">
     <value>Ничья</value>
   </data>
+  <data name="WonLabel" xml:space="preserve">
+    <value>Победил</value>
+  </data>
   <data name="Zeros" xml:space="preserve">
     <value>Нолики</value>
+  </data>
+  <data name="GameStartLabel" xml:space="preserve">
+    <value>Начало игры</value>
   </data>
 </root>
