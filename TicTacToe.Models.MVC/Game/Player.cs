@@ -1,4 +1,5 @@
-﻿using TicTacToe.Models.Entity;
+﻿using System.ComponentModel.DataAnnotations;
+using TicTacToe.Models.Entity;
 
 namespace TicTacToe.Models.MVC.Game
 {
@@ -9,7 +10,10 @@ namespace TicTacToe.Models.MVC.Game
         {
             GameSideEnum = GameSideEnum.Crosses;
         }
+        [Required]
+        [MaxLength(30)]
         public string Name { get; set; }
+        [Required]
         public  GameSideEnum GameSideEnum  { get; set; }
 
     }

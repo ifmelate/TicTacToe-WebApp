@@ -7,6 +7,7 @@
         <div class="input-group mb-1">
             <input type="text" class="form-control text-center" asp-for="Player.Name" aria-describedby="basic-addon3">
         </div>
+        <span asp-validation-for="Player"></span>
     </div>
 </div>
 <div class="form-row justify-content-center">
@@ -17,5 +18,8 @@
                 @Html.EditorFor(m => m.Player.GameSideEnum, "EnumRadioButtonList")
             </div>
         </div>
+        <span asp-validation-for="Player.GameSideEnum"></span>
     </div>
 </div>
+
+

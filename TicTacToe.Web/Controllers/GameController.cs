@@ -81,7 +81,8 @@ namespace TicTacToe.Web.Controllers
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult StartGame(Game game)
         {
-
+            if (!ModelState.IsValid)
+                return View("Index", game);
             var newGame = _gameService.Create(CurrentUser.Id, game.Player, game.Level);
 
             return RedirectToAction("Index");
