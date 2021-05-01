@@ -182,7 +182,7 @@ namespace TicTacToe.Resources
         {
             get
             {
-                return ResourceManager.GetString("WonLable", resourceCulture);
+                return ResourceManager.GetString("WonLabel", resourceCulture);
             }
         }
         public static string Result
