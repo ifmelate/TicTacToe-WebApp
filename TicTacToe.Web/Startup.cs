@@ -35,9 +35,8 @@ namespace TicTacToe.Web
         {
            
             //data layer
-            var connectionString = Configuration["ConnectionStrings:DefaultConnectionString"];
             services.AddDbContext<DataContext>(
-                options => options.UseSqlServer(connectionString, x => x.MigrationsAssembly("TicTacToe.Data.EF")));
+                options => options.UseInMemoryDatabase("TestInMemoryDb"));
 
             //other
             services.AddHttpContextAccessor();
@@ -83,7 +82,6 @@ namespace TicTacToe.Web
                         factory.Create(typeof(Resources.GameStrings));
                 })
                 .AddViewLocalization(LanguageViewLocationExpanderFormat.Suffix)
-                .SetCompatibilityVersion(CompatibilityVersion.Latest)
                 ;
             services.AddLocalization();
             services.Configure<WebEncoderOptions>(options => options.TextEncoderSettings = new TextEncoderSettings(UnicodeRanges.All));
